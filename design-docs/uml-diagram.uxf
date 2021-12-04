@@ -1,45 +1,78 @@
-<diagram program="umletino" version="14.4.0-SNAPSHOT"><zoom_level>10</zoom_level><element><id>UMLClass</id><coordinates><x>0</x><y>499</y><w>230</w><h>80</h></coordinates><panel_attributes>LocalStorage
+<diagram program="umletino" version="14.4.0-SNAPSHOT"><zoom_level>10</zoom_level><help_text>Space for diagram note</help_text><element><id>UMLClass</id><coordinates><x>260</x><y>549</y><w>230</w><h>140</h></coordinates><panel_attributes>LocalStorage
 --
-Responsibility
+_Responsibility_
 -- Store/Retrieve Data from local machine
-</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>850</x><y>629</y><w>170</w><h>80</h></coordinates><panel_attributes>Project
 --
-Responsibility
--- Store Project Title and Tasks</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>555</x><y>629</y><w>200</w><h>180</h></coordinates><panel_attributes>Project Tasks
+_Attributes_
+- localProjectList: Project[...]</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>1060</x><y>669</y><w>170</w><h>130</h></coordinates><panel_attributes>Project
 --
-Responsibility
+_Responsibility_
+-- Store Project Title and Tasks
+--
+_Attributes_
+- title: string
+- taskList: Task[...]
+- activeStatus: bool</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>825</x><y>669</y><w>160</w><h>180</h></coordinates><panel_attributes>Task
+--
+_Responsibility_
 -- Store info about task
 --
-- 
+_Attributes_
+- title: string
+- description: string
+- dueDate: new Date
+- priority: int
+- taskCompleteStatus: bool
 
-</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>15</x><y>259</y><w>170</w><h>220</h></coordinates><panel_attributes>Render
+</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>345</x><y>309</y><w>170</w><h>220</h></coordinates><panel_attributes>Render
 --
-Responsibility
--- Handle DOM manipulation</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>400</x><y>309</y><w>230</w><h>240</h></coordinates><panel_attributes>PubSub
+_Responsibility_
+-- Handle TO-DO list rendering
 --
-Responsibility
--- Act as go between for module events</panel_attributes><additional_attributes></additional_attributes></element><element><id>Relation</id><coordinates><x>745</x><y>659</y><w>120</w><h>40</h></coordinates><panel_attributes>lt=&lt;&lt;&lt;&lt;&lt;-
+_Attributes_
++ projectListField
++ taskListField</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>670</x><y>359</y><w>220</w><h>240</h></coordinates><panel_attributes>PubSub
+--
+_Responsibility_
+-- Act as go between for module events
+--
+_Attributes_
+EventList: Obj[...]
+</panel_attributes><additional_attributes></additional_attributes></element><element><id>Relation</id><coordinates><x>975</x><y>699</y><w>100</w><h>40</h></coordinates><panel_attributes>lt=&lt;&lt;&lt;&lt;&lt;-
 m1=1
-m2=0..*</panel_attributes><additional_attributes>100;10;10;10</additional_attributes></element><element><id>Relation</id><coordinates><x>915</x><y>539</y><w>50</w><h>110</h></coordinates><panel_attributes>lt=&lt;&lt;&lt;&lt;&lt;-
+m2=0..*</panel_attributes><additional_attributes>80;10;10;10</additional_attributes></element><element><id>Relation</id><coordinates><x>1125</x><y>589</y><w>50</w><h>100</h></coordinates><panel_attributes>lt=&lt;&lt;&lt;&lt;&lt;-
 m1=1
-m2=0..*</panel_attributes><additional_attributes>10;10;10;90</additional_attributes></element><element><id>UMLClass</id><coordinates><x>840</x><y>279</y><w>170</w><h>270</h></coordinates><panel_attributes>List of Projects
+m2=0..*</panel_attributes><additional_attributes>10;10;10;80</additional_attributes></element><element><id>UMLClass</id><coordinates><x>1050</x><y>329</y><w>130</w><h>270</h></coordinates><panel_attributes>List of Projects
 --
-Responsibility
--- Store Projects</panel_attributes><additional_attributes></additional_attributes></element><element><id>Relation</id><coordinates><x>175</x><y>449</y><w>240</w><h>40</h></coordinates><panel_attributes>lt=&lt;-
-Sub 'updateListOfProjects'</panel_attributes><additional_attributes>10;20;220;20</additional_attributes></element><element><id>Relation</id><coordinates><x>225</x><y>489</y><w>190</w><h>40</h></coordinates><panel_attributes>lt=&lt;-
-Sub 'updateListOfProjects'</panel_attributes><additional_attributes>10;20;170;20</additional_attributes></element><element><id>Relation</id><coordinates><x>625</x><y>489</y><w>230</w><h>40</h></coordinates><panel_attributes>lt=&lt;-
-Pub 'updateListOfProjects'</panel_attributes><additional_attributes>10;20;210;20</additional_attributes></element><element><id>Relation</id><coordinates><x>175</x><y>389</y><w>240</w><h>40</h></coordinates><panel_attributes>lt=&lt;-
-Pub 'projectDeleteClick'</panel_attributes><additional_attributes>220;20;10;20</additional_attributes></element><element><id>Relation</id><coordinates><x>175</x><y>339</y><w>240</w><h>40</h></coordinates><panel_attributes>lt=&lt;-
-Pub 'taskDeleteClick'</panel_attributes><additional_attributes>220;20;10;20</additional_attributes></element><element><id>Relation</id><coordinates><x>175</x><y>309</y><w>240</w><h>40</h></coordinates><panel_attributes>lt=&lt;-
-Pub 'taskCreateClick'</panel_attributes><additional_attributes>220;20;10;20</additional_attributes></element><element><id>Relation</id><coordinates><x>175</x><y>369</y><w>240</w><h>40</h></coordinates><panel_attributes>lt=&lt;-
-Pub 'projectCreateClick'</panel_attributes><additional_attributes>220;20;10;20</additional_attributes></element><element><id>Relation</id><coordinates><x>175</x><y>419</y><w>240</w><h>40</h></coordinates><panel_attributes>lt=&lt;-
-Pub 'projectSetActiveClick'</panel_attributes><additional_attributes>220;20;10;20</additional_attributes></element><element><id>Relation</id><coordinates><x>625</x><y>419</y><w>230</w><h>40</h></coordinates><panel_attributes>lt=&lt;-
-Sub 'projectSetActiveClick'</panel_attributes><additional_attributes>210;20;10;20</additional_attributes></element><element><id>Relation</id><coordinates><x>625</x><y>389</y><w>230</w><h>40</h></coordinates><panel_attributes>lt=&lt;-
-Sub 'projectCreateClick'</panel_attributes><additional_attributes>210;20;10;20</additional_attributes></element><element><id>Relation</id><coordinates><x>625</x><y>369</y><w>230</w><h>40</h></coordinates><panel_attributes>lt=&lt;-
-Sub 'projectDeleteClick'</panel_attributes><additional_attributes>210;20;10;20</additional_attributes></element><element><id>Relation</id><coordinates><x>625</x><y>339</y><w>230</w><h>40</h></coordinates><panel_attributes>lt=&lt;-
-Sub 'taskDeleteClick'</panel_attributes><additional_attributes>210;20;10;20</additional_attributes></element><element><id>Relation</id><coordinates><x>625</x><y>309</y><w>230</w><h>40</h></coordinates><panel_attributes>lt=&lt;-
-Sub 'taskCreateClick'</panel_attributes><additional_attributes>210;20;10;20</additional_attributes></element><element><id>Relation</id><coordinates><x>225</x><y>519</y><w>190</w><h>40</h></coordinates><panel_attributes>lt=&lt;-
-Pub 'initFromLocalStorage'</panel_attributes><additional_attributes>170;20;10;20</additional_attributes></element><element><id>Relation</id><coordinates><x>625</x><y>519</y><w>230</w><h>40</h></coordinates><panel_attributes>lt=&lt;-
-Sub 'initFromLocalStorage'</panel_attributes><additional_attributes>210;20;10;20</additional_attributes></element><element><id>Relation</id><coordinates><x>175</x><y>279</y><w>240</w><h>50</h></coordinates><panel_attributes>lt=&lt;-
-Pub 'toggleTaskComplete'</panel_attributes><additional_attributes>220;30;10;20</additional_attributes></element><element><id>Relation</id><coordinates><x>625</x><y>289</y><w>230</w><h>40</h></coordinates><panel_attributes>lt=&lt;-
-Sub 'toggleTaskComplete'</panel_attributes><additional_attributes>210;20;10;20</additional_attributes></element></diagram>
+_Responsibility_
+-- Store Projects
+--
+_Attributes_
+projectList: Project[...]
+
+</panel_attributes><additional_attributes></additional_attributes></element><element><id>Relation</id><coordinates><x>505</x><y>499</y><w>180</w><h>40</h></coordinates><panel_attributes>lt=&lt;-
+Sub 'updateListOfProjects'</panel_attributes><additional_attributes>10;20;160;20</additional_attributes></element><element><id>Relation</id><coordinates><x>485</x><y>539</y><w>200</w><h>40</h></coordinates><panel_attributes>lt=&lt;-
+Sub 'updateListOfProjects'</panel_attributes><additional_attributes>10;20;180;20</additional_attributes></element><element><id>Relation</id><coordinates><x>885</x><y>539</y><w>180</w><h>40</h></coordinates><panel_attributes>lt=&lt;-
+Pub 'updateListOfProjects'</panel_attributes><additional_attributes>10;20;160;20</additional_attributes></element><element><id>Relation</id><coordinates><x>505</x><y>439</y><w>180</w><h>40</h></coordinates><panel_attributes>lt=&lt;-
+Pub 'projectDeleteClick'</panel_attributes><additional_attributes>160;20;10;20</additional_attributes></element><element><id>Relation</id><coordinates><x>505</x><y>389</y><w>180</w><h>40</h></coordinates><panel_attributes>lt=&lt;-
+Pub 'taskDeleteClick'</panel_attributes><additional_attributes>160;20;10;20</additional_attributes></element><element><id>Relation</id><coordinates><x>505</x><y>359</y><w>180</w><h>40</h></coordinates><panel_attributes>lt=&lt;-
+Pub 'taskCreateClick'</panel_attributes><additional_attributes>160;20;10;20</additional_attributes></element><element><id>Relation</id><coordinates><x>505</x><y>419</y><w>180</w><h>40</h></coordinates><panel_attributes>lt=&lt;-
+Pub 'projectCreateClick'</panel_attributes><additional_attributes>160;20;10;20</additional_attributes></element><element><id>Relation</id><coordinates><x>505</x><y>469</y><w>180</w><h>40</h></coordinates><panel_attributes>lt=&lt;-
+Pub 'projectSetActiveClick'</panel_attributes><additional_attributes>160;20;10;20</additional_attributes></element><element><id>Relation</id><coordinates><x>885</x><y>469</y><w>180</w><h>40</h></coordinates><panel_attributes>lt=&lt;-
+Sub 'projectSetActiveClick'</panel_attributes><additional_attributes>160;20;10;20</additional_attributes></element><element><id>Relation</id><coordinates><x>885</x><y>439</y><w>180</w><h>40</h></coordinates><panel_attributes>lt=&lt;-
+Sub 'projectCreateClick'</panel_attributes><additional_attributes>160;20;10;20</additional_attributes></element><element><id>Relation</id><coordinates><x>885</x><y>419</y><w>180</w><h>40</h></coordinates><panel_attributes>lt=&lt;-
+Sub 'projectDeleteClick'</panel_attributes><additional_attributes>160;20;10;20</additional_attributes></element><element><id>Relation</id><coordinates><x>885</x><y>389</y><w>180</w><h>40</h></coordinates><panel_attributes>lt=&lt;-
+Sub 'taskDeleteClick'</panel_attributes><additional_attributes>160;20;10;20</additional_attributes></element><element><id>Relation</id><coordinates><x>885</x><y>359</y><w>180</w><h>40</h></coordinates><panel_attributes>lt=&lt;-
+Sub 'taskCreateClick'</panel_attributes><additional_attributes>160;20;10;20</additional_attributes></element><element><id>Relation</id><coordinates><x>485</x><y>569</y><w>200</w><h>40</h></coordinates><panel_attributes>lt=&lt;-
+Pub 'initFromLocalStorage'</panel_attributes><additional_attributes>180;20;10;20</additional_attributes></element><element><id>Relation</id><coordinates><x>885</x><y>569</y><w>180</w><h>40</h></coordinates><panel_attributes>lt=&lt;-
+Sub 'initFromLocalStorage'</panel_attributes><additional_attributes>160;20;10;20</additional_attributes></element><element><id>Relation</id><coordinates><x>505</x><y>339</y><w>180</w><h>40</h></coordinates><panel_attributes>lt=&lt;-
+Pub 'toggleTaskComplete'</panel_attributes><additional_attributes>160;20;10;20</additional_attributes></element><element><id>Relation</id><coordinates><x>875</x><y>339</y><w>190</w><h>40</h></coordinates><panel_attributes>lt=&lt;-
+Sub 'toggleTaskComplete'</panel_attributes><additional_attributes>170;20;15;20</additional_attributes></element><element><id>UMLClass</id><coordinates><x>730</x><y>200</y><w>100</w><h>30</h></coordinates><panel_attributes>/_TO-DO LIST_/</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>345</x><y>159</y><w>170</w><h>120</h></coordinates><panel_attributes>Index
+--
+_Responsibility_
+-- Adds items to page
+--
+_Attributes_
+- contentContainer
+- footer</panel_attributes><additional_attributes></additional_attributes></element><element><id>Relation</id><coordinates><x>420</x><y>270</y><w>30</w><h>60</h></coordinates><panel_attributes>lt=&lt;.
+</panel_attributes><additional_attributes>10;10;10;40</additional_attributes></element></diagram>
