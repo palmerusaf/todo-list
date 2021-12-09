@@ -1,15 +1,14 @@
 import { taskBuilder } from "./task-builder.js";
 
-const newTask = taskBuilder(
-  "task1 title",
-  "task1 desc",
-  new Date("10 / 25 / 1989"),
-  1,
-  false
+let taskListPrototype = [];
+
+for (let i = 0; i < 10; i++) {
+  const newTask = taskBuilder(`title${i}`,
+  `description${i}`,
+new Date(  `10/25/${1989+i}`),
+  `${i}`,
+(i%2)?true:false
 );
-console.log(newTask.title,
-newTask.description,
-newTask.dueDate,
-newTask.priority,
-newTask.taskCompleteStatus
-);
+  taskListPrototype.push(newTask);
+}
+console.log(taskListPrototype);
