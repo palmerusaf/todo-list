@@ -14,7 +14,7 @@ export const pubsub = {
       }
     },
     publish: function(eventName, data) {
-      console.log(`PUBSUB: Making an broadcast about ${eventName} with ${data}`);
+      console.log(`PUBSUB: Making an broadcast about ${eventName} with `,data);
       //emit|publish|announce the event to anyone who is subscribed
       if (this.events[eventName]) {
         this.events[eventName].forEach(callbackFunc => {
