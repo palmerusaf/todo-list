@@ -12,3 +12,4 @@ new Date(  `10/25/${1989+i}`),
   taskListPrototype.push(newTask);
 }
 console.log(taskListPrototype);
+export {taskListPrototype};
