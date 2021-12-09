@@ -14,3 +14,5 @@ for (let i = 0; i < 3; i++) {
 console.log(projectListPrototype);
 projectListPrototype[0].taskList[0].dueDate = new Date();
 console.log(projectListPrototype[0].taskList[0].dueDate);
+
+export { projectListPrototype };
