@@ -3,6 +3,7 @@ import { pubsub } from "./pubsub.js";
 
 export const projectListController = (function () {
   let projectList = [];
+  pubsub.subscribe("loadProjectList", initProjectList);
 
   function getProjectList() {
     return projectList;
@@ -10,6 +11,7 @@ export const projectListController = (function () {
 
   function initProjectList(storedList) {
     projectList = storedList || buildDefaultList();
+    pubsub.publish("updateListOfProjects", getProjectList());
   }
 
   function buildDefaultList() {
