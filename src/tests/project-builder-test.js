@@ -5,8 +5,8 @@ let projectListPrototype = [];
 
 for (let i = 0; i < 3; i++) {
   const newProject = projectBuilder(
-    `title${i}`,
-    taskListPrototype,
+    `project${i}`,
+    taskListPrototype[i],
     i % 2 ? true : false
   );
   projectListPrototype.push(newProject);
