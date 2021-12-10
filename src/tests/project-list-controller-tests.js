@@ -2,10 +2,10 @@ import "../project-list-controller";
 import { pubsub } from "../pubsub";
 import { projectListPrototype } from "./project-builder-test";
 
-pubsub.subscribe("updateListOfProjects",logData)
+pubsub.subscribe("updateListOfProjects", logData);
 
-function logData(data){
-    console.log(data);
+function logData(data) {
+  console.log(data);
 }
 
 //initListTest with pubsub
@@ -18,3 +18,11 @@ function logData(data){
 // pubsub.publish("loadProjectList",projectListPrototype);
 // pubsub.publish("projectDeleteClick",2)
 // pubsub.publish("projectDeleteClick",2)
+
+// removeTasks Tests
+// pubsub.publish("loadProjectList", projectListPrototype);
+// window.deleteButtonClick = function (projectIndex,taskIndex) {
+//   const buttonClick = {projectIndex,taskIndex};
+//   pubsub.publish("taskDeleteClick", buttonClick);
+// };
+// 

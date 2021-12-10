@@ -10,7 +10,6 @@ export const projectListController = (function () {
   function initProjectList(storedList) {
     projectList = storedList || buildDefaultList();
     pubsub.publish("updateListOfProjects", projectList);
-    console.log(projectList, pubsub.events);
   }
 
   function buildDefaultList() {
