@@ -5,14 +5,12 @@ export const projectListController = (function () {
   let projectList = [];
   pubsub.subscribe("loadProjectList", initProjectList);
   pubsub.subscribe("projectDeleteClick", deleteProject);
-
-  function getProjectList() {
-    return projectList;
-  }
+  pubsub.subscribe("taskDeleteClick", deleteTask);
 
   function initProjectList(storedList) {
     projectList = storedList || buildDefaultList();
-    pubsub.publish("updateListOfProjects", getProjectList());
+    pubsub.publish("updateListOfProjects", projectList);
+    console.log(projectList, pubsub.events);
   }
 
   function buildDefaultList() {
@@ -27,6 +25,17 @@ export const projectListController = (function () {
     projectList[index]
       ? projectList.splice(index, 1)
       : console.warn(`Project index ${index} not found to delete.`);
-    pubsub.publish("updateListOfProjects", getProjectList());
+    pubsub.publish("updateListOfProjects", projectList);
+  }
+
+  function deleteTask(clickEvent) {
+    const projectIndex = clickEvent.projectIndex; //change to clickEvent.projectIndex after render module implemented
+    const taskIndex = clickEvent.taskIndex; //change to clickEvent.taskIndex after render module implemented
+    projectList[projectIndex].taskList[taskIndex]
+      ? projectList[projectIndex].taskList.splice(taskIndex, 1)
+      : console.warn(
+          `Project index ${projectIndex},task index ${taskIndex} not found to delete.`
+        );
+    pubsub.publish("updateListOfProjects", projectList);
   }
 })();
