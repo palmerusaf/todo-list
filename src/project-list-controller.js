@@ -1,11 +1,13 @@
 import { projectBuilder } from "./project-builder.js";
 import { pubsub } from "./pubsub.js";
+import { taskBuilder } from "./task-builder.js";
 
 export const projectListController = (function () {
   let projectList = [];
   pubsub.subscribe("loadProjectList", initProjectList);
   pubsub.subscribe("projectDeleteClick", deleteProject);
   pubsub.subscribe("taskDeleteClick", deleteTask);
+  pubsub.subscribe("taskAddClick", addTask);
 
   function initProjectList(storedList) {
     projectList = storedList || buildDefaultList();
@@ -36,5 +38,44 @@ export const projectListController = (function () {
           `Project index ${projectIndex},task index ${taskIndex} not found to delete.`
         );
     pubsub.publish("updateListOfProjects", projectList);
+  }
+
+  function addTask(clickEvent) {
+    if (taskAlreadyExists(clickEvent)) replaceOldTaskWithNewTask(clickEvent);
+    else appendListWithNewTask(clickEvent);
+
+    function taskAlreadyExists(clickEvent) {
+      const pI = clickEvent.dataset.projectIndex;
+      const taskIndex = clickEvent.dataset.taskIndex;
+      const taskListLength =
+        projectList[pI].taskList.length;
+      return taskIndex < taskListLength;
+    }
+
+    function appendListWithNewTask(clickEvent) {
+      const pI = clickEvent.dataset.projectIndex;
+      projectList[pI].taskList.push(createTaskFromClickEvent(clickEvent));
+    }
+
+    function replaceOldTaskWithNewTask(clickEvent) {
+      const pI = clickEvent.dataset.projectIndex;
+      const tI = clickEvent.dataset.taskIndex;
+      projectList[pI].taskList[tI] = createTaskFromClickEvent(clickEvent);
+    }
+
+    function createTaskFromClickEvent(clickEvent) {
+      const title = clickEvent.form.title.value;
+      const description = clickEvent.form.description.value;
+      const dueDate = clickEvent.form.dueDate.value;
+      const priority = clickEvent.form.priority.value;
+      const taskCompleteStatus = false;
+      return taskBuilder(
+        title,
+        description,
+        dueDate,
+        priority,
+        taskCompleteStatus
+      );
+    }
   }
 })();
