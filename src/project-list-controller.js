@@ -43,31 +43,32 @@ export const projectListController = (function () {
   function addTask(clickEvent) {
     if (taskAlreadyExists(clickEvent)) replaceOldTaskWithNewTask(clickEvent);
     else appendListWithNewTask(clickEvent);
+    pubsub.publish("updateListOfProjects", projectList);
 
     function taskAlreadyExists(clickEvent) {
-      const pI = clickEvent.dataset.projectIndex;
-      const taskIndex = clickEvent.dataset.taskIndex;
-      const taskListLength =
-        projectList[pI].taskList.length;
-      return taskIndex < taskListLength;
+      const pI = clickEvent.target.parentNode.dataset.projectIndex;
+      const taskIndex = clickEvent.target.parentNode.dataset.taskIndex;
+      const taskListLength = projectList[pI].taskList.length;
+      if (taskIndex) return taskIndex < taskListLength;
+      return taskIndex;
     }
 
     function appendListWithNewTask(clickEvent) {
-      const pI = clickEvent.dataset.projectIndex;
+      const pI = clickEvent.target.parentNode.dataset.projectIndex;
       projectList[pI].taskList.push(createTaskFromClickEvent(clickEvent));
     }
 
     function replaceOldTaskWithNewTask(clickEvent) {
-      const pI = clickEvent.dataset.projectIndex;
-      const tI = clickEvent.dataset.taskIndex;
+      const pI = clickEvent.target.parentNode.dataset.projectIndex;
+      const tI = clickEvent.target.parentNode.dataset.taskIndex;
       projectList[pI].taskList[tI] = createTaskFromClickEvent(clickEvent);
     }
 
     function createTaskFromClickEvent(clickEvent) {
-      const title = clickEvent.form.title.value;
-      const description = clickEvent.form.description.value;
-      const dueDate = clickEvent.form.dueDate.value;
-      const priority = clickEvent.form.priority.value;
+      const title = clickEvent.target.title.value;
+      const description = clickEvent.target.description.value;
+      const dueDate = clickEvent.target.dueDate.value;
+      const priority = clickEvent.target.priority.value;
       const taskCompleteStatus = false;
       return taskBuilder(
         title,
