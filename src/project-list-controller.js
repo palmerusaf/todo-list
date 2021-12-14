@@ -31,8 +31,8 @@ export const projectListController = (function () {
   }
 
   function deleteTask(clickEvent) {
-    const projectIndex = clickEvent.projectIndex; 
-    const taskIndex = clickEvent.taskIndex; 
+    const projectIndex = clickEvent.projectIndex;
+    const taskIndex = clickEvent.taskIndex;
     projectList[projectIndex].taskList[taskIndex]
       ? projectList[projectIndex].taskList.splice(taskIndex, 1)
       : console.warn(
@@ -50,7 +50,7 @@ export const projectListController = (function () {
       const pI = clickEvent.projectIndex;
       const taskIndex = clickEvent.taskIndex;
       const taskListLength = projectList[pI].taskList.length;
-      if (taskIndex) return taskIndex < taskListLength;
+      if (taskIndex !== undefined) return taskIndex < taskListLength;
       return taskIndex;
     }
 
@@ -88,7 +88,7 @@ export const projectListController = (function () {
 
     function projectAlreadyExists(clickEvent) {
       const pI = clickEvent.projectIndex;
-      if (pI) return pI < projectList.length;
+      if (pI !== undefined) return pI < projectList.length;
       return pI;
     }
 
