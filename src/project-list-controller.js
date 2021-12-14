@@ -8,6 +8,7 @@ export const projectListController = (function () {
   pubsub.subscribe("projectDeleteClick", deleteProject);
   pubsub.subscribe("taskDeleteClick", deleteTask);
   pubsub.subscribe("taskAddClick", addTask);
+  pubsub.subscribe("projectAddClick", addProject);
 
   function initProjectList(storedList) {
     projectList = storedList || buildDefaultList();
@@ -30,8 +31,8 @@ export const projectListController = (function () {
   }
 
   function deleteTask(clickEvent) {
-    const projectIndex = clickEvent.projectIndex; //change to clickEvent.projectIndex after render module implemented
-    const taskIndex = clickEvent.taskIndex; //change to clickEvent.taskIndex after render module implemented
+    const projectIndex = clickEvent.projectIndex; 
+    const taskIndex = clickEvent.taskIndex; 
     projectList[projectIndex].taskList[taskIndex]
       ? projectList[projectIndex].taskList.splice(taskIndex, 1)
       : console.warn(
@@ -46,29 +47,29 @@ export const projectListController = (function () {
     pubsub.publish("updateListOfProjects", projectList);
 
     function taskAlreadyExists(clickEvent) {
-      const pI = clickEvent.target.parentNode.dataset.projectIndex;
-      const taskIndex = clickEvent.target.parentNode.dataset.taskIndex;
+      const pI = clickEvent.projectIndex;
+      const taskIndex = clickEvent.taskIndex;
       const taskListLength = projectList[pI].taskList.length;
       if (taskIndex) return taskIndex < taskListLength;
       return taskIndex;
     }
 
     function appendListWithNewTask(clickEvent) {
-      const pI = clickEvent.target.parentNode.dataset.projectIndex;
+      const pI = clickEvent.projectIndex;
       projectList[pI].taskList.push(createTaskFromClickEvent(clickEvent));
     }
 
     function replaceOldTaskWithNewTask(clickEvent) {
-      const pI = clickEvent.target.parentNode.dataset.projectIndex;
-      const tI = clickEvent.target.parentNode.dataset.taskIndex;
+      const pI = clickEvent.projectIndex;
+      const tI = clickEvent.taskIndex;
       projectList[pI].taskList[tI] = createTaskFromClickEvent(clickEvent);
     }
 
     function createTaskFromClickEvent(clickEvent) {
-      const title = clickEvent.target.title.value;
-      const description = clickEvent.target.description.value;
-      const dueDate = clickEvent.target.dueDate.value;
-      const priority = clickEvent.target.priority.value;
+      const title = clickEvent.title;
+      const description = clickEvent.description;
+      const dueDate = clickEvent.dueDate;
+      const priority = clickEvent.priority;
       const taskCompleteStatus = false;
       return taskBuilder(
         title,
@@ -77,6 +78,29 @@ export const projectListController = (function () {
         priority,
         taskCompleteStatus
       );
+    }
+  }
+
+  function addProject(clickEvent) {
+    if (projectAlreadyExists(clickEvent)) changeProjectTitle(clickEvent);
+    else appendProject(clickEvent);
+    pubsub.publish("updateListOfProjects", projectList);
+
+    function projectAlreadyExists(clickEvent) {
+      const pI = clickEvent.projectIndex;
+      if (pI) return pI < projectList.length;
+      return pI;
+    }
+
+    function changeProjectTitle(clickEvent) {
+      const pI = clickEvent.projectIndex;
+      const newTitle = clickEvent.title;
+      projectList[pI].title = newTitle;
+    }
+
+    function appendProject(clickEvent) {
+      const title = clickEvent.title;
+      projectList.push(projectBuilder(title, [], false));
     }
   }
 })();
