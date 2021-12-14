@@ -10,6 +10,7 @@ export const projectListController = (function () {
   pubsub.subscribe("taskAddClick", addTask);
   pubsub.subscribe("projectAddClick", addProject);
   pubsub.subscribe("projectSetActiveClick", setActiveProject);
+  pubsub.subscribe("toggleTaskCompleteClick", toggleTaskComplete);
 
   function initProjectList(storedList) {
     projectList = storedList || buildDefaultList();
@@ -32,12 +33,12 @@ export const projectListController = (function () {
   }
 
   function deleteTask(clickEvent) {
-    const projectIndex = clickEvent.projectIndex;
-    const taskIndex = clickEvent.taskIndex;
-    projectList[projectIndex].taskList[taskIndex]
-      ? projectList[projectIndex].taskList.splice(taskIndex, 1)
+    const pI = clickEvent.projectIndex;
+    const tI = clickEvent.taskIndex;
+    projectList[pI].taskList[tI]
+      ? projectList[pI].taskList.splice(tI, 1)
       : console.warn(
-          `Project index ${projectIndex},task index ${taskIndex} not found to delete.`
+          `Project index ${pI},task index ${tI} not found to delete.`
         );
     pubsub.publish("updateListOfProjects", projectList);
   }
@@ -122,5 +123,14 @@ export const projectListController = (function () {
     function setProjectIndexToActive(index) {
       projectList[index].activeStatus = true;
     }
+  }
+
+  function toggleTaskComplete(clickEvent) {
+    const pI = clickEvent.projectIndex;
+    const tI = clickEvent.taskIndex;
+    projectList[pI].taskList[tI].taskCompleteStatus
+      ? (projectList[pI].taskList[tI].taskCompleteStatus = false)
+      : (projectList[pI].taskList[tI].taskCompleteStatus = true);
+    pubsub.publish("updateListOfProjects", projectList);
   }
 })();

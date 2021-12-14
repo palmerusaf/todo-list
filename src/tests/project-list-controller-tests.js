@@ -65,3 +65,13 @@ pubsub.publish("loadProjectList", projectListPrototype);
 // setActiveProject Test
 // pubsub.publish("projectSetActiveClick", { projectIndex: 0 });
 // pubsub.publish("projectSetActiveClick", { projectIndex: 3 });
+
+// toggleTaskComplete Test
+// function toggleTest(pI,tI){
+// pubsub.subscribe("updateListOfProjects", (e) => {
+// console.log(e[pI].taskList[tI]);
+// });
+// pubsub.publish("toggleTaskCompleteClick", { projectIndex: pI, taskIndex: tI });
+//  }
+// toggleTest(0,0)
+// toggleTest(0,9)
