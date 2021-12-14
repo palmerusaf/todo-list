@@ -56,4 +56,8 @@ pubsub.publish("loadProjectList", projectListPrototype);
 //
 
 // addTask Test
-document.body.appendChild(buildForm(1, 15));
+// document.body.appendChild(buildForm(1, 15));
+
+// addProject Test
+pubsub.publish("projectAddClick", { projectIndex: 0, title: "test" });
+pubsub.publish("projectAddClick", { projectIndex: 5, title: "test" });
