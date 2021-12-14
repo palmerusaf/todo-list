@@ -59,5 +59,9 @@ pubsub.publish("loadProjectList", projectListPrototype);
 // document.body.appendChild(buildForm(1, 15));
 
 // addProject Test
-pubsub.publish("projectAddClick", { projectIndex: 0, title: "test" });
-pubsub.publish("projectAddClick", { projectIndex: 5, title: "test" });
+// pubsub.publish("projectAddClick", { projectIndex: 0, title: "test" });
+// pubsub.publish("projectAddClick", { projectIndex: 5, title: "test" });
+
+// setActiveProject Test
+// pubsub.publish("projectSetActiveClick", { projectIndex: 0 });
+// pubsub.publish("projectSetActiveClick", { projectIndex: 3 });
