@@ -9,6 +9,7 @@ export const projectListController = (function () {
   pubsub.subscribe("taskDeleteClick", deleteTask);
   pubsub.subscribe("taskAddClick", addTask);
   pubsub.subscribe("projectAddClick", addProject);
+  pubsub.subscribe("projectSetActiveClick", setActiveProject);
 
   function initProjectList(storedList) {
     projectList = storedList || buildDefaultList();
@@ -101,6 +102,25 @@ export const projectListController = (function () {
     function appendProject(clickEvent) {
       const title = clickEvent.title;
       projectList.push(projectBuilder(title, [], false));
+    }
+  }
+
+  function setActiveProject(clickEvent) {
+    const pI = clickEvent.projectIndex;
+    if (projectList[pI] === undefined) {
+      console.error("Project Index undefined.");
+      return;
+    }
+    setAllProjectsToInActive();
+    setProjectIndexToActive(pI);
+    pubsub.publish("updateListOfProjects", projectList);
+
+    function setAllProjectsToInActive() {
+      projectList.forEach((project) => (project.activeStatus = false));
+    }
+
+    function setProjectIndexToActive(index) {
+      projectList[index].activeStatus = true;
     }
   }
 })();
