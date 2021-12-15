@@ -1,35 +1,39 @@
 export const Render = (() => {
-  // Link stylesheet for delete icon
+  // Link stylesheet for icons
   function linkToGoogleIconsStylesheet() {
     const link = document.createElement("link");
-    link.href = "https://fonts.googleapis.com/icon?family=Material+Icons";
+    link.href =
+      "https://fonts.googleapis.com/icon?family=Material+Icons+Outlined";
     link.rel = "stylesheet";
     return link;
   }
   document.head.appendChild(linkToGoogleIconsStylesheet());
 
-  const makeAddItemButton = () => {
+  function makeIconButton(content) {
     const button = document.createElement("button");
-    button.textContent = "+";
-    button.classList.add("add-item-button");
+    button.classList.add(
+      "material-icons-outlined",
+      "button",
+      `button__${content}`
+    );
+    button.textContent = content;
     return button;
+  }
+
+  const makeAddItemButton = () => {
+    return makeIconButton("add");
   };
 
   const makeEditItemButton = () => {
-    const button = document.createElement("button");
-    button.classList.add("material-icons");
-    button.textContent = "edit";
-    return button;
+    return makeIconButton("edit");
   };
 
   const makeDeleteItemButton = () => {
-    const button = document.createElement("button");
-    return button;
+    return makeIconButton("delete");
   };
 
   const makeSubmitItemButton = () => {
-    const button = document.createElement("button");
-    return button;
+    return makeIconButton("check");
   };
 
   return {
