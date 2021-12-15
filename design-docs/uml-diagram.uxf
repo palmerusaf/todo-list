@@ -31,7 +31,7 @@ _Attributes_
 + priority: int
 + taskCompleteStatus: bool
 
-</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>130</x><y>189</y><w>250</w><h>220</h></coordinates><panel_attributes>Render
+</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>110</x><y>189</y><w>270</w><h>220</h></coordinates><panel_attributes>Render
 --
 _Responsibility_
 -- Store shared funcs and export dependencies
@@ -42,7 +42,9 @@ _Attributes_
 --
 _Functions_
 + buildAddItemButton
-+ buildEditItemButton</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>535</x><y>239</y><w>220</w><h>240</h></coordinates><panel_attributes>PubSub
++ buildEditItemButton
++ deleteItemButton
++ submitItemButton</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>535</x><y>239</y><w>220</w><h>240</h></coordinates><panel_attributes>PubSub
 --
 _Responsibility_
 -- Act as go between for module events
@@ -72,14 +74,14 @@ _Functions_
 + createProject(Event): Project[...]
 + setActiveProject(Event): Project[...]
 + toggleTaskComplete(Event): Project[...]
-</panel_attributes><additional_attributes></additional_attributes></element><element><id>Relation</id><coordinates><x>370</x><y>379</y><w>180</w><h>40</h></coordinates><panel_attributes>lt=&lt;-
-Sub 'updateListOfProjects'</panel_attributes><additional_attributes>10;20;160;20</additional_attributes></element><element><id>Relation</id><coordinates><x>470</x><y>429</y><w>170</w><h>130</h></coordinates><panel_attributes>lt=&lt;-
+</panel_attributes><additional_attributes></additional_attributes></element><element><id>Relation</id><coordinates><x>370</x><y>389</y><w>180</w><h>50</h></coordinates><panel_attributes>lt=&lt;-
+Sub 'updateListOfProjects'</panel_attributes><additional_attributes>10;10;20;10;20;30;160;30</additional_attributes></element><element><id>Relation</id><coordinates><x>470</x><y>429</y><w>170</w><h>130</h></coordinates><panel_attributes>lt=&lt;-
 Sub 'updateListOfProjects'</panel_attributes><additional_attributes>10;110;10;10;60;10</additional_attributes></element><element><id>Relation</id><coordinates><x>750</x><y>419</y><w>180</w><h>40</h></coordinates><panel_attributes>lt=&lt;-
-Pub 'updateListOfProjects'</panel_attributes><additional_attributes>10;20;160;20</additional_attributes></element><element><id>Relation</id><coordinates><x>370</x><y>319</y><w>180</w><h>40</h></coordinates><panel_attributes>lt=&lt;-
+Pub 'updateListOfProjects'</panel_attributes><additional_attributes>10;20;160;20</additional_attributes></element><element><id>Relation</id><coordinates><x>370</x><y>339</y><w>180</w><h>40</h></coordinates><panel_attributes>lt=&lt;-
 Pub 'projectDeleteClick'</panel_attributes><additional_attributes>160;20;10;20</additional_attributes></element><element><id>Relation</id><coordinates><x>370</x><y>259</y><w>180</w><h>40</h></coordinates><panel_attributes>lt=&lt;-
 Pub 'taskDeleteClick'</panel_attributes><additional_attributes>160;20;10;20</additional_attributes></element><element><id>Relation</id><coordinates><x>370</x><y>239</y><w>180</w><h>40</h></coordinates><panel_attributes>lt=&lt;-
-Pub 'taskCreateClick'</panel_attributes><additional_attributes>160;20;10;20</additional_attributes></element><element><id>Relation</id><coordinates><x>370</x><y>299</y><w>180</w><h>40</h></coordinates><panel_attributes>lt=&lt;-
-Pub 'projectCreateClick'</panel_attributes><additional_attributes>160;20;10;20</additional_attributes></element><element><id>Relation</id><coordinates><x>370</x><y>349</y><w>180</w><h>40</h></coordinates><panel_attributes>lt=&lt;-
+Pub 'taskCreateClick'</panel_attributes><additional_attributes>160;20;10;20</additional_attributes></element><element><id>Relation</id><coordinates><x>370</x><y>319</y><w>180</w><h>40</h></coordinates><panel_attributes>lt=&lt;-
+Pub 'projectCreateClick'</panel_attributes><additional_attributes>160;20;10;20</additional_attributes></element><element><id>Relation</id><coordinates><x>370</x><y>359</y><w>180</w><h>40</h></coordinates><panel_attributes>lt=&lt;-
 Pub 'projectSetActiveClick'</panel_attributes><additional_attributes>160;20;10;20</additional_attributes></element><element><id>Relation</id><coordinates><x>750</x><y>359</y><w>180</w><h>40</h></coordinates><panel_attributes>lt=&lt;-
 Sub 'projectSetActiveClick'</panel_attributes><additional_attributes>160;20;10;20</additional_attributes></element><element><id>Relation</id><coordinates><x>750</x><y>339</y><w>180</w><h>40</h></coordinates><panel_attributes>lt=&lt;-
 Sub 'projectCreateClick'</panel_attributes><additional_attributes>160;20;10;20</additional_attributes></element><element><id>Relation</id><coordinates><x>750</x><y>319</y><w>180</w><h>40</h></coordinates><panel_attributes>lt=&lt;-
