@@ -37,9 +37,9 @@ export const Render = (() => {
 
   const makeBEMSpan = (blockName, elementName, modifierName) => {
     const span = document.createElement("span");
-    blockName = blockName || "";
-    elementName = `__${elementName}` || "";
-    modifierName = `${modifierName}` || "";
+    blockName ? (blockName = blockName) : (blockName = "");
+    elementName ? (elementName = `__${elementName}`) : (elementName = "");
+    modifierName ? (modifierName = `--${modifierName}`) : (modifierName = "");
     span.classList.add(`${blockName}${elementName}${modifierName}`);
     return span;
   };
