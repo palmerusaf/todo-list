@@ -8,7 +8,7 @@ export const Render = (() => {
     document.head.appendChild(googleIconsStyleSheet);
   }
 
-  function makeIconButton(content) {
+  function _makeIconButton(content) {
     const button = document.createElement("button");
     button.classList.add(
       "material-icons-outlined",
@@ -20,19 +20,19 @@ export const Render = (() => {
   }
 
   const makeAddButton = () => {
-    return makeIconButton("add");
+    return _makeIconButton("add");
   };
 
   const makeEditButton = () => {
-    return makeIconButton("edit");
+    return _makeIconButton("edit");
   };
 
   const makeDeleteButton = () => {
-    return makeIconButton("delete");
+    return _makeIconButton("delete");
   };
 
   const makeCheckButton = () => {
-    return makeIconButton("check");
+    return _makeIconButton("check");
   };
 
   return {
