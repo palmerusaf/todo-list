@@ -23,6 +23,8 @@ export const RenderProjectField = (() => {
     const span = _makeProjectSpan("item");
     span.dataset.projectIndex = index;
     span.appendChild(_makeProjectTitle(project));
+    span.appendChild(_makeProjectDeleteButton());
+    span.appendChild(_makeProjectEditButton());
     return span;
   }
 
@@ -32,9 +34,17 @@ export const RenderProjectField = (() => {
     return span;
   }
 
-  function _makeProjectDeleteButton() {}
+  function _makeProjectDeleteButton() {
+    const span = _makeProjectSpan("button");
+    span.appendChild(Render.makeDeleteButton());
+    return span;
+  }
 
-  function _makeProjectEditButton() {}
+  function _makeProjectEditButton() {
+    const span = _makeProjectSpan("button");
+    span.appendChild(Render.makeEditButton());
+    return span;
+  }
 
   function _makeProjectEntryForm() {}
 
