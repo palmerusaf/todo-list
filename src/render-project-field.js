@@ -1,5 +1,5 @@
-import { Render } from "../render.js";
-import "../project-list-controller";
+import { Render } from "./render.js";
+import "./project-list-controller";
 import { pubsub } from "./pubsub.js";
 
 export const RenderProjectField = (() => {
@@ -10,14 +10,20 @@ export const RenderProjectField = (() => {
 
   function renderProjectFieldContent(projectList) {
     projectField.textContent = "";
-    projectList.forEach((project) => {
-      projectField.appendChild(_makeProjectItem(project));
+    projectList.forEach((project, index) => {
+      projectField.appendChild(_makeProjectItem(project, index));
     });
   }
 
-  function _makeProjectItem() {}
+  function _makeProjectItem(project, index) {
+    const span = document.createElement("span");
+    span.classList.add("project-field__item");
+    span.dataset.projectIndex = index;
+    // span.appendChild(_makeProjectTitle(project));
+    return span;
+  }
 
-  function _makeProjectTitle() {}
+  function _makeProjectTitle(project) {}
 
   function _makeProjectDeleteButton() {}
 

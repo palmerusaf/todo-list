@@ -1,2 +1,2 @@
 import "./style.sass";
-import "./tests/render-tests.js";
+import "./tests/render-project-field-tests";
