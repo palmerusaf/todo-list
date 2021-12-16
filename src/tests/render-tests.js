@@ -1,5 +1,7 @@
 import { Render } from "../render.js";
-document.body.appendChild(Render.makeAddItemButton());
-document.body.appendChild(Render.makeEditItemButton());
-document.body.appendChild(Render.makeDeleteItemButton());
-document.body.appendChild(Render.makeSubmitItemButton());
+
+// Common buttons render test
+// document.body.appendChild(Render.makeAddButton());
+// document.body.appendChild(Render.makeEditButton());
+// document.body.appendChild(Render.makeDeleteButton());
+// document.body.appendChild(Render.makeCheckButton());
