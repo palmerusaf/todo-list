@@ -19,26 +19,26 @@ export const Render = (() => {
     return button;
   }
 
-  const makeAddItemButton = () => {
+  const makeAddButton = () => {
     return makeIconButton("add");
   };
 
-  const makeEditItemButton = () => {
+  const makeEditButton = () => {
     return makeIconButton("edit");
   };
 
-  const makeDeleteItemButton = () => {
+  const makeDeleteButton = () => {
     return makeIconButton("delete");
   };
 
-  const makeSubmitItemButton = () => {
+  const makeCheckButton = () => {
     return makeIconButton("check");
   };
 
   return {
-    makeAddItemButton,
-    makeEditItemButton,
-    makeDeleteItemButton,
-    makeSubmitItemButton,
+    makeAddButton,
+    makeEditButton,
+    makeDeleteButton,
+    makeCheckButton,
   };
 })();
