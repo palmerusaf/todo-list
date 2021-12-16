@@ -15,11 +15,14 @@ export const RenderProjectField = (() => {
     });
   }
 
+  function _makeProjectSpan(cssElementName) {
+    return makeBEMSpan("project-field", cssElementName);
+  }
+
   function _makeProjectItem(project, index) {
-    const span = document.createElement("span");
-    span.classList.add("project-field__item");
+    const span = _makeProjectSpan("item");
     span.dataset.projectIndex = index;
-    // span.appendChild(_makeProjectTitle(project));
+    span.appendChild(_makeProjectTitle(project));
     return span;
   }
 

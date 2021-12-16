@@ -35,10 +35,20 @@ export const Render = (() => {
     return _makeIconButton("check");
   };
 
+  const makeBEMSpan = (blockName, elementName, modifierName) => {
+    const span = document.createElement("span");
+    blockName = blockName || "";
+    elementName = `__${elementName}` || "";
+    modifierName = `${modifierName}` || "";
+    span.classList.add(`${blockName}${elementName}${modifierName}`);
+    return span;
+  };
+
   return {
     makeAddButton,
     makeEditButton,
     makeDeleteButton,
     makeCheckButton,
+    makeBEMSpan,
   };
 })();
