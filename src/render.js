@@ -1,13 +1,12 @@
 export const Render = (() => {
   // Link stylesheet for icons
-  function linkToGoogleIconsStylesheet() {
-    const link = document.createElement("link");
-    link.href =
+  {
+    const googleIconsStyleSheet = document.createElement("link");
+    googleIconsStyleSheet.href =
       "https://fonts.googleapis.com/icon?family=Material+Icons+Outlined";
-    link.rel = "stylesheet";
-    return link;
+    googleIconsStyleSheet.rel = "stylesheet";
+    document.head.appendChild(googleIconsStyleSheet);
   }
-  document.head.appendChild(linkToGoogleIconsStylesheet());
 
   function makeIconButton(content) {
     const button = document.createElement("button");
