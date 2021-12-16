@@ -16,7 +16,7 @@ export const RenderProjectField = (() => {
   }
 
   function _makeProjectSpan(cssElementName) {
-    return makeBEMSpan("project-field", cssElementName);
+    return Render.makeBEMSpan("project-field", cssElementName);
   }
 
   function _makeProjectItem(project, index) {
@@ -26,7 +26,11 @@ export const RenderProjectField = (() => {
     return span;
   }
 
-  function _makeProjectTitle(project) {}
+  function _makeProjectTitle(project) {
+    const span = _makeProjectSpan("title");
+    span.textContent = project.title;
+    return span;
+  }
 
   function _makeProjectDeleteButton() {}
 
