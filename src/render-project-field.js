@@ -23,8 +23,8 @@ export const RenderProjectField = (() => {
     const span = _makeProjectSpan("item");
     span.dataset.projectIndex = index;
     span.appendChild(_makeProjectTitle(project));
-    span.appendChild(_makeProjectDeleteButton());
     span.appendChild(_makeProjectEditButton());
+    span.appendChild(_makeProjectDeleteButton());
     return span;
   }
 
@@ -37,7 +37,15 @@ export const RenderProjectField = (() => {
   function _makeProjectDeleteButton() {
     const span = _makeProjectSpan("button");
     span.appendChild(Render.makeDeleteButton());
+    span.addEventListener("click", _deleteProjectOnClick);
     return span;
+  }
+
+  function _deleteProjectOnClick(clickEvent) {
+    const projectIndex =
+      clickEvent.target.parentNode.parentNode.dataset.projectIndex;
+    console.log(projectIndex);
+    pubsub.publish("projectDeleteClick", { projectIndex });
   }
 
   function _makeProjectEditButton() {
