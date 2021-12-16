@@ -8,7 +8,14 @@ export const RenderProjectField = (() => {
   const projectField = document.createElement("div");
   projectField.classList.add("project-field");
 
-  function renderProjectFieldContent(projectList) {}
+  function renderProjectFieldContent(projectList) {
+    projectField.textContent = "";
+    projectList.forEach((project) => {
+      projectField.appendChild(_makeProjectItem(project));
+    });
+  }
+
+  function _makeProjectItem() {}
 
   function _makeProjectTitle() {}
 
