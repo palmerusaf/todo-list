@@ -23,25 +23,30 @@ export const RenderProjectField = (() => {
     const span = document.createElement("span");
     span.classList = pf("item", { active: project.activeStatus });
     span.dataset.projectIndex = index;
-    span.addEventListener("click", setItemActive);
-    span.appendChild(_makeProjectTitle(project));
-    span.appendChild(_makeButtonField());
+    span.addEventListener("click", _setItemActiveOnClick);
+    span.appendChild(_makeProjectTitle(project, index));
+    span.appendChild(_makeButtonField(index));
     return span;
   }
 
-  function setItemActive(clickEvent) {
-    const projectIndex = clickEvent.target.dataset.projectIndex;
+  function _setItemActiveOnClick(clickEvent) {
+    if (buttonWasClicked(clickEvent)) return;
+    const projectIndex = this.dataset.projectIndex;
     pubsub.publish("projectSetActiveClick", { projectIndex });
+
+    function buttonWasClicked(clickEvent) {
+      return [...clickEvent.target.classList].includes("button");
+    }
   }
 
-  function _makeProjectTitle(project) {
+  function _makeProjectTitle(project, index) {
     const span = document.createElement("span");
     span.classList = pf("title");
     span.textContent = project.title;
     return span;
   }
 
-  function _makeButtonField() {
+  function _makeButtonField(index) {
     const span = document.createElement("span");
     span.classList = pf("buttons");
     span.appendChild(_makeProjectEditButton());
@@ -55,9 +60,8 @@ export const RenderProjectField = (() => {
     return button;
   }
 
-  function _deleteProjectOnClick(clickEvent) {
-    const projectIndex =
-      clickEvent.target.parentNode.parentNode.dataset.projectIndex;
+  function _deleteProjectOnClick() {
+    const projectIndex = this.parentNode.parentNode.dataset.projectIndex;
     pubsub.publish("projectDeleteClick", { projectIndex });
   }
 
