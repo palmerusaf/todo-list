@@ -23,9 +23,15 @@ export const RenderProjectField = (() => {
     const span = document.createElement("span");
     span.classList = pf("item", { active: project.activeStatus });
     span.dataset.projectIndex = index;
+    span.addEventListener("click", setItemActive);
     span.appendChild(_makeProjectTitle(project));
     span.appendChild(_makeButtonField());
     return span;
+  }
+
+  function setItemActive(clickEvent) {
+    const projectIndex = clickEvent.target.dataset.projectIndex;
+    pubsub.publish("projectSetActiveClick", { projectIndex });
   }
 
   function _makeProjectTitle(project) {
