@@ -17,6 +17,16 @@ export const RenderProjectField = (() => {
     projectList.forEach((project, index) => {
       projectField.appendChild(_makeProjectItem(project, index));
     });
+    projectField.appendChild(_makeAddProjectButton());
+  }
+
+  function _makeAddProjectButton() {
+    const button = Render.makeAddButton();
+    const span = document.createElement("span");
+    span.classList = pf("item");
+    span.classList.add(pf("add"));
+    span.appendChild(button);
+    return span;
   }
 
   function _makeProjectItem(project, index) {
