@@ -22,6 +22,7 @@ export const RenderProjectField = (() => {
 
   function _makeAddProjectButton() {
     const button = Render.makeAddButton();
+    button.addEventListener("click", _makeProjectEntryForm);
     const span = document.createElement("span");
     span.classList = pf("item");
     span.classList.add(pf("add"));
@@ -77,14 +78,46 @@ export const RenderProjectField = (() => {
 
   function _makeProjectEditButton() {
     const button = Render.makeEditButton();
+    button.addEventListener("click", _handleEditButtonClick);
     return button;
   }
 
-  function _makeProjectEntryForm() {}
+  function _handleEditButtonClick() {
+    replaceLabelWithForm(this);
+
+    function replaceLabelWithForm(clickEvent) {
+      const projectIndex =
+        clickEvent.parentNode.parentNode.dataset.projectIndex;
+      const projectTitle = getProjectTitle(projectIndex);
+      const projectLabel = getProjectLabel(projectIndex);
+      const preFilledForm = _makeProjectEntryForm(projectTitle);
+
+      projectField.replaceChild(preFilledForm, projectLabel);
+
+      function getProjectLabel(projectIndex) {
+        return document.querySelector(
+          `[data-project-index='${projectIndex}'].${pf("item")}`
+        );
+      }
+    }
+  }
+
+  function _makeProjectEntryForm(projectTitle) {
+    const p = document.createElement("p");
+    p.textContent = projectTitle;
+    return p;
+  }
 
   function _makeProjectSubmitFormButton() {}
 
+  function getProjectTitle(projectIndex) {
+    return document.querySelector(
+      `[data-project-index='${projectIndex}'] .${pf("title")}`
+    ).textContent;
+  }
+
   return {
+    getProjectTitle,
     projectField,
   };
 })();
