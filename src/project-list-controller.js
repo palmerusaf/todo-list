@@ -25,7 +25,7 @@ export const projectListController = (function () {
   }
 
   function deleteProject(clickEvent) {
-    const index = clickEvent; //change to clickEvent.index after render module implemented
+    const index = clickEvent.projectIndex;
     projectList[index]
       ? projectList.splice(index, 1)
       : console.warn(`Project index ${index} not found to delete.`);

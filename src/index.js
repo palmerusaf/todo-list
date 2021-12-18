@@ -1,2 +1,4 @@
 import "./style.sass";
-import "./tests/project-list-controller-tests"
+import { RenderProjectField } from "./render-project-field";
+
+document.body.appendChild(RenderProjectField.projectField);
