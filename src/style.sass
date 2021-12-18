@@ -9,6 +9,7 @@ $sandy-brown: #f4a261ff
 $burnt-sienna: #e76f51ff
 *
     margin: 0
+    font-family: sans-serif
 .button
     background: none
     border: none
@@ -49,7 +50,6 @@ $burnt-sienna: #e76f51ff
                 background-color: $persian-green-hover
     &__title
         padding-left: 9px
-        font-family: sans-serif
         overflow: hidden
     &__item:hover &__buttons
         display: inline-flex
@@ -60,6 +60,21 @@ $burnt-sienna: #e76f51ff
         background-color: $charcoal
         &:hover
             background-color: $charcoal
+    &__form
+        width: 100%
+        display: flex
+        justify-content: space-between
+    &__text-box
+        color: white
+        background-color: $charcoal-hover
+        font-weight: 600
+        height: 21px
+        align-self: center
+        outline: 2px inset $persian-green
+        border: none
+        padding-left: 8px
+        border-radius: 5px
+        width: 75%
     @media (max-width: 811px)
         &__item--active &__buttons
             display: inline-flex

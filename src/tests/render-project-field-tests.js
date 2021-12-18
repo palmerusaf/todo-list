@@ -7,4 +7,7 @@ pubsub.publish("loadProjectList", projectListPrototype);
 
 // projectField tests
 document.body.appendChild(RenderProjectField.projectField);
-// RenderProjectField._handleEditButtonClick().test(1);
+// mod css for entry from
+RenderProjectField.projectField.appendChild(
+  RenderProjectField._makeProjectEntryForm()
+);
