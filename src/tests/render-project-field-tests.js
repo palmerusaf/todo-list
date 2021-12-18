@@ -8,6 +8,6 @@ pubsub.publish("loadProjectList", projectListPrototype);
 // projectField tests
 document.body.appendChild(RenderProjectField.projectField);
 // mod css for entry from
-RenderProjectField.projectField.appendChild(
-  RenderProjectField._makeProjectEntryForm()
-);
+// RenderProjectField.projectField.appendChild(
+  // RenderProjectField._makeProjectEntryForm()
+// );

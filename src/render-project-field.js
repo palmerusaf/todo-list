@@ -8,9 +8,11 @@ export const RenderProjectField = (() => {
 
   // for bem class names
   const pf = bem("project-field");
-
   const projectField = document.createElement("div");
   projectField.classList.add("project-field");
+  // TO-DO Remove after localStorage implementation 
+  pubsub.publish("loadProjectList");
+  // TO-DO Remove after localStorage implementation 
 
   function renderProjectFieldContent(projectList) {
     projectField.textContent = "";
