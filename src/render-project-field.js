@@ -148,10 +148,15 @@ export const RenderProjectField = (() => {
 
       function _makeSubmitButton() {
         const button = Render.makeCheckButton();
-        button.classList.add(pf("submit"));
         button.addEventListener("click", _submitEntryForm);
         return button;
-        function _submitEntryForm(clickEvent) {}
+
+        function _submitEntryForm() {
+          const title = this.parentNode[0].value;
+          if (title === "") return;
+          const projectIndex = this.parentNode.parentNode.dataset.projectIndex;
+          pubsub.publish("projectAddClick", { title, projectIndex });
+        }
       }
     }
   }
@@ -165,6 +170,6 @@ export const RenderProjectField = (() => {
   return {
     getProjectTitle,
     projectField,
-    _makeProjectEntryForm
+    _makeProjectEntryForm,
   };
 })();
