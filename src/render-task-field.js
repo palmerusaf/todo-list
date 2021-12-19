@@ -19,6 +19,8 @@ export const RenderTaskField = (() => {
     const project = _getActiveProject(projectList);
     taskField.textContent = "";
     if (!project) return;
+    const projectIndex = _getActiveProjectIndex(projectList);
+    taskField.dataset.projectIndex = projectIndex;
     taskField.appendChild(_makeProjectTitle(project));
     taskField.appendChild(_makeTaskList(project));
     return taskField;
@@ -49,16 +51,26 @@ export const RenderTaskField = (() => {
 
       function _makeTaskMainView(task) {
         const container = document.createElement("div");
+        container.classList = tf("main-view");
+        // container.appendChild(_makeTaskTitle(task))
+        // container.appendChild(_makeDueDate(task))
+        // container.appendChild(_makeButtonField())
         return container;
       }
+
       function _makeTaskExpandedView(task) {
         const container = document.createElement("div");
+        container.classList = tf("expanded-view", { hidden: true });
         return container;
       }
     }
 
     function _getActiveProject(projectList) {
       return projectList.filter((project) => project.activeStatus)[0];
+    }
+
+    function _getActiveProjectIndex(projectList) {
+      return projectList.findIndex((project) => project.activeStatus);
     }
   }
 
