@@ -16,9 +16,11 @@ export const RenderTaskField = (() => {
   taskField.textContent = "test";
 
   function renderTaskFieldContent(projectList) {
-    const project = _getActiveProject(projectList);
     taskField.textContent = "";
+
+    const project = _getActiveProject(projectList);
     if (!project) return;
+    
     const projectIndex = _getActiveProjectIndex(projectList);
     taskField.dataset.projectIndex = projectIndex;
     taskField.appendChild(_makeProjectTitle(project));
@@ -27,7 +29,7 @@ export const RenderTaskField = (() => {
 
     function _makeProjectTitle(project) {
       const title = document.createElement("h1");
-      title.classList.add(tf("title"));
+      title.classList.add(tf("project-title"));
       console.log(project);
       title.textContent = `Task List for ${project.title}`;
       return title;
@@ -52,10 +54,26 @@ export const RenderTaskField = (() => {
       function _makeTaskMainView(task) {
         const container = document.createElement("div");
         container.classList = tf("main-view");
-        // container.appendChild(_makeTaskTitle(task))
-        // container.appendChild(_makeDueDate(task))
-        // container.appendChild(_makeButtonField())
+        container.appendChild(_makeTaskTitle(task));
+        container.appendChild(_makeDueDate(task));
+        container.appendChild(_makeButtonField());
         return container;
+
+        function _makeTaskTitle(task) {
+          const title = document.createElement("span");
+          title.classList = tf("title");
+          title.textContent=task.title
+          return title
+        }
+
+        function _makeDueDate(task) {
+          const dueDate = document.createElement("span");
+          dueDate.classList = tf("dueDate");
+          dueDate.textContent=task.dueDate
+          return dueDate
+        }
+
+        function _makeButtonField() {}
       }
 
       function _makeTaskExpandedView(task) {
