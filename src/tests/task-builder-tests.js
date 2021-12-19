@@ -11,7 +11,7 @@ function buildTaskList(modifier) {
     const newTask = taskBuilder(
       `task${i} for project ${modifier}`,
       `description${i}`,
-      new Date(`10/25/${1989 + i}`),
+      new Date(`12/${15 + i}/2021`),
       `${i}`,
       i % 2 ? true : false
     );

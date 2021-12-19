@@ -2,6 +2,7 @@ import { Render } from "./render.js";
 import "./project-list-controller";
 import { pubsub } from "./pubsub.js";
 import bem from "easy-bem";
+import { formatDistance, formatDistanceToNow, subDays } from "date-fns";
 
 export const RenderTaskField = (() => {
   // for bem class names
@@ -20,7 +21,7 @@ export const RenderTaskField = (() => {
 
     const project = _getActiveProject(projectList);
     if (!project) return;
-    
+
     const projectIndex = _getActiveProjectIndex(projectList);
     taskField.dataset.projectIndex = projectIndex;
     taskField.appendChild(_makeProjectTitle(project));
@@ -56,21 +57,28 @@ export const RenderTaskField = (() => {
         container.classList = tf("main-view");
         container.appendChild(_makeTaskTitle(task));
         container.appendChild(_makeDueDate(task));
-        container.appendChild(_makeButtonField());
+        // container.appendChild(_makeButtonField());
         return container;
 
         function _makeTaskTitle(task) {
           const title = document.createElement("span");
           title.classList = tf("title");
-          title.textContent=task.title
-          return title
+          title.textContent = task.title;
+          return title;
         }
 
         function _makeDueDate(task) {
           const dueDate = document.createElement("span");
           dueDate.classList = tf("dueDate");
-          dueDate.textContent=task.dueDate
-          return dueDate
+          //   dueDate.textContent = new Date(task.dueDate);
+          dueDate.textContent = _formatDueDate(task.dueDate); //   dueDate.textContent = _formatDate(task.dueDate);
+          return dueDate;
+
+          function _formatDueDate(dueDate) {
+            return formatDistanceToNow(new Date(dueDate), {
+              addSuffix: true,
+            }).replace("about ", "");
+          }
         }
 
         function _makeButtonField() {}
