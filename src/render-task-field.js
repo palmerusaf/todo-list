@@ -31,7 +31,6 @@ export const RenderTaskField = (() => {
     function _makeProjectTitle(project) {
       const title = document.createElement("h1");
       title.classList.add(tf("project-title"));
-      console.log(project);
       title.textContent = `Task List for ${project.title}`;
       return title;
     }
@@ -69,9 +68,9 @@ export const RenderTaskField = (() => {
 
         function _makeDueDate(task) {
           const dueDate = document.createElement("span");
+          const formattedDate = _formatDueDate(task.dueDate);
           dueDate.classList = tf("dueDate");
-          //   dueDate.textContent = new Date(task.dueDate);
-          dueDate.textContent = _formatDueDate(task.dueDate); //   dueDate.textContent = _formatDate(task.dueDate);
+          dueDate.textContent = `Due Date: ${formattedDate}`;
           return dueDate;
 
           function _formatDueDate(dueDate) {
