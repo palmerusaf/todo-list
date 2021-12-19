@@ -26,15 +26,19 @@ export const RenderTaskField = (() => {
     function _makeProjectTitle(project) {
       const title = document.createElement("h1");
       title.classList.add(tf("title"));
+      console.log(project);
+      title.textContent = `Task List for ${project.title}`;
       return title;
     }
+
     function _makeTaskList(project) {
       const list = document.createElement("div");
       list.classList.add(tf("task-list"));
       return list;
     }
+
     function _getActiveProject(projectList) {
-      return projectList.filter((project) => project.activeStatus);
+      return projectList.filter((project) => project.activeStatus)[0];
     }
   }
 
