@@ -56,7 +56,7 @@ export const RenderTaskField = (() => {
         container.classList = tf("main-view");
         container.appendChild(_makeTaskTitle(task));
         container.appendChild(_makeDueDate(task));
-        // container.appendChild(_makeButtonField());
+        container.appendChild(_makeExpandButton());
         return container;
 
         function _makeTaskTitle(task) {
@@ -80,7 +80,11 @@ export const RenderTaskField = (() => {
           }
         }
 
-        function _makeButtonField() {}
+        function _makeExpandButton() {
+          const button = Render.makeExpandButton();
+          button.classList.add(tf("expand-button"));
+          return button;
+        }
       }
 
       function _makeTaskExpandedView(task) {
