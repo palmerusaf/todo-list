@@ -84,13 +84,45 @@ $burnt-sienna: #e76f51ff
             display: inline-flex
 
 .task-field
+    display: flex
+    flex-direction: column
+    width: 75%
+    align-items: center
+    background-color: $persian-green
     &__project-title
+        padding: 16px
+        color: white
+        font-weight: 600
+        @media (max-width: 811px)
+            &
+                font-size: 20px
+                padding: 9px
     &__task-list
+        width: 100%
+        display: flex
+        flex-direction: column
+        align-items: center
     &__task-item
+        align-items: center
+        background-color: $burnt-sienna
+        padding: 4px
+        border-radius: 9px
+        margin: 4px 0
+        width: 75%
+        @media (max-width: 811px)
+            &
+                width: 92%
+                font-size: 12px
         &--mark-done
     &__main-view
+        align-items: center
+        display: flex
+        justify-content: space-between
+        gap: 9px
     &__title
+        padding-left: 12px
     &__dueDate
     &__expand-button
+        text-decoration: none
     &__expanded-view
         &--hidden
