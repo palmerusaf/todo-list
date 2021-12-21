@@ -99,7 +99,7 @@ export const RenderTaskField = (() => {
         const container = document.createElement("div");
         container.classList = tf("expanded-view", { hidden: true });
         container.appendChild(_makeDetailsField(task));
-        // container.appendChild(_makeButtonField());
+        container.appendChild(_makeButtonField());
         return container;
 
         function _makeDetailsField(task) {
@@ -122,7 +122,29 @@ export const RenderTaskField = (() => {
           }
         }
 
-        function _makeButtonField() {}
+        function _makeButtonField() {
+          const container = document.createElement("div");
+          container.classList = tf("button-field");
+          container.appendChild(_makeToggleCompleteTaskButton());
+          container.appendChild(_makeEditTaskButton());
+          container.appendChild(_makeDeleteTaskButton());
+          return container;
+
+          function _makeEditTaskButton() {
+            const button = Render.makeEditButton();
+            return button;
+          }
+
+          function _makeDeleteTaskButton() {
+            const button = Render.makeDeleteButton();
+            return button;
+          }
+
+          function _makeToggleCompleteTaskButton() {
+            const button = Render.makeCheckButton();
+            return button;
+          }
+        }
       }
     }
 

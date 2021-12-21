@@ -136,12 +136,14 @@ $burnt-sienna: #e76f51ff
             transition: 500ms
     &__expanded-view
         opacity: 1
+        display: flex
+        justify-content: space-between
         transform: scale(1)
-        transition: 600ms
+        transition: 400ms
         width: 100%
         &--hidden
             opacity: 0
-            transition: 600ms
+            transition: 400ms
             transform: scale(0)
             height: 0
     &__details
@@ -149,3 +151,5 @@ $burnt-sienna: #e76f51ff
         margin-left: 20px
         flex-direction: column
         width: 50%
+    &__button-field
+        padding-right: 12px
