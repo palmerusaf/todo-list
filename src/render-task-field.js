@@ -90,7 +90,31 @@ export const RenderTaskField = (() => {
       function _makeTaskExpandedView(task) {
         const container = document.createElement("div");
         container.classList = tf("expanded-view", { hidden: true });
+        container.appendChild(_makeDetailsField(task));
+        // container.appendChild(_makeButtonField());
         return container;
+
+        function _makeDetailsField(task) {
+          const container = document.createElement("div");
+          container.classList.add(tf("details"));
+          container.appendChild(_makeDescription(task));
+          container.appendChild(_makePriority(task));
+          return container;
+
+          function _makeDescription(task) {
+            const description = document.createElement("span");
+            description.textContent = `Description: ${task.description}`;
+            return description;
+          }
+
+          function _makePriority(task) {
+            const priority = document.createElement("span");
+            priority.textContent = `Priority: ${task.priority}`;
+            return priority;
+          }
+        }
+
+        function _makeButtonField() {}
       }
     }
 
