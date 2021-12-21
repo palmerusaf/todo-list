@@ -104,16 +104,23 @@ $burnt-sienna: #e76f51ff
         align-items: center
     &__task-item
         align-items: center
-        background-color: $burnt-sienna
+        background-color: $charcoal
+        color: white
         padding: 4px
         border-radius: 9px
         margin: 4px 0
         width: 75%
+        &:hover
+            background-color: $charcoal-hover
         @media (max-width: 811px)
             &
                 width: 92%
                 font-size: 12px
         &--mark-done
+            background-color: $charcoal-dark
+            color: grey
+            & span
+                text-decoration: line-through
     &__main-view
         align-items: center
         display: flex
@@ -123,6 +130,5 @@ $burnt-sienna: #e76f51ff
         padding-left: 12px
     &__dueDate
     &__expand-button
-        text-decoration: none
     &__expanded-view
         &--hidden
