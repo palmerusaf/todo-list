@@ -94,58 +94,6 @@ export const RenderProjectField = (() => {
                   `[data-project-index='${projectIndex}'].${pf("item")}`
                 );
               }
-
-              function _makeProjectEntryForm(projectTitle, projectIndex) {
-                const container = _makeEntryContainer(projectIndex);
-                const form = _makeForm(projectTitle);
-                container.appendChild(form);
-                return container;
-
-                function _makeEntryContainer(projectIndex) {
-                  const span = document.createElement("span");
-                  span.classList = pf("item");
-                  span.dataset.projectIndex = projectIndex;
-                  return span;
-                }
-
-                function _makeForm(projectTitle) {
-                  const form = document.createElement("form");
-                  form.classList = pf("form");
-                  form.action = "#";
-                  form.onsubmit = "return false";
-                  const textEntryBox = _makeTextEntryBox(projectTitle);
-                  const submitButton = _makeSubmitButton();
-                  form.appendChild(textEntryBox);
-                  form.appendChild(submitButton);
-                  return form;
-
-                  function _makeTextEntryBox(projectTitle) {
-                    const textEntryBox = document.createElement("input");
-                    textEntryBox.classList = pf("text-box");
-                    textEntryBox.placeholder = "Enter project name";
-                    textEntryBox.value = projectTitle || "";
-                    textEntryBox.required = true;
-                    return textEntryBox;
-                  }
-
-                  function _makeSubmitButton() {
-                    const button = Render.makeCheckButton();
-                    button.addEventListener("click", _submitEntryForm);
-                    return button;
-
-                    function _submitEntryForm() {
-                      const title = this.parentNode[0].value;
-                      if (title === "") return;
-                      const projectIndex =
-                        this.parentNode.parentNode.dataset.projectIndex;
-                      pubsub.publish("projectAddClick", {
-                        title,
-                        projectIndex,
-                      });
-                    }
-                  }
-                }
-              }
             }
           }
         }
@@ -173,6 +121,58 @@ export const RenderProjectField = (() => {
 
       function _insertBlankEntryForm() {
         projectField.insertBefore(_makeProjectEntryForm(), this.parentNode);
+      }
+    }
+
+    function _makeProjectEntryForm(projectTitle, projectIndex) {
+      const container = _makeEntryContainer(projectIndex);
+      const form = _makeForm(projectTitle);
+      container.appendChild(form);
+      return container;
+
+      function _makeEntryContainer(projectIndex) {
+        const span = document.createElement("span");
+        span.classList = pf("item");
+        span.dataset.projectIndex = projectIndex;
+        return span;
+      }
+
+      function _makeForm(projectTitle) {
+        const form = document.createElement("form");
+        form.classList = pf("form");
+        form.action = "#";
+        form.onsubmit = "return false";
+        const textEntryBox = _makeTextEntryBox(projectTitle);
+        const submitButton = _makeSubmitButton();
+        form.appendChild(textEntryBox);
+        form.appendChild(submitButton);
+        return form;
+
+        function _makeTextEntryBox(projectTitle) {
+          const textEntryBox = document.createElement("input");
+          textEntryBox.classList = pf("text-box");
+          textEntryBox.placeholder = "Enter project name";
+          textEntryBox.value = projectTitle || "";
+          textEntryBox.required = true;
+          return textEntryBox;
+        }
+
+        function _makeSubmitButton() {
+          const button = Render.makeCheckButton();
+          button.addEventListener("click", _submitEntryForm);
+          return button;
+
+          function _submitEntryForm() {
+            const title = this.parentNode[0].value;
+            if (title === "") return;
+            const projectIndex =
+              this.parentNode.parentNode.dataset.projectIndex;
+            pubsub.publish("projectAddClick", {
+              title,
+              projectIndex,
+            });
+          }
+        }
       }
     }
   }
