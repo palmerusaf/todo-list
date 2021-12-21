@@ -83,7 +83,15 @@ export const RenderTaskField = (() => {
         function _makeExpandButton() {
           const button = Render.makeExpandButton();
           button.classList.add(tf("expand-button"));
+          button.addEventListener("click", _expandDetails);
           return button;
+
+          function _expandDetails(clickEvent) {
+            const expandButton = clickEvent.target;
+            const expandableField = clickEvent.target.parentNode.nextSibling;
+            expandableField.classList.toggle(tf("expanded-view") + "--hidden");
+            expandButton.classList.toggle(tf("expand-button") + "--rotate");
+          }
         }
       }
 

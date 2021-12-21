@@ -130,9 +130,20 @@ $burnt-sienna: #e76f51ff
         padding-left: 12px
     &__dueDate
     &__expand-button
+        transition: 500ms
+        &--rotate
+            transform: rotate(-90deg)
+            transition: 500ms
     &__expanded-view
+        opacity: 1
+        transform: scale(1)
+        transition: 600ms
+        width: 100%
         &--hidden
-            // display: none
+            opacity: 0
+            transition: 600ms
+            transform: scale(0)
+            height: 0
     &__details
         display: flex
         margin-left: 20px
