@@ -26,6 +26,7 @@ export const RenderTaskField = (() => {
     taskField.dataset.projectIndex = projectIndex;
     taskField.appendChild(_makeProjectTitle(project));
     taskField.appendChild(_makeTaskList(project));
+    taskField.appendChild(_makeAddNewTaskButton());
     return taskField;
 
     function _makeProjectTitle(project) {
@@ -42,7 +43,7 @@ export const RenderTaskField = (() => {
         list.appendChild(_makeTaskItem(task, index))
       );
       return list;
-
+      
       function _makeTaskItem(task, index) {
         const item = document.createElement("span");
         item.classList = tf("task-item", {
@@ -176,6 +177,12 @@ export const RenderTaskField = (() => {
           }
         }
       }
+    }
+
+    function _makeAddNewTaskButton() {
+      const button = Render.makeAddButton();
+      button.classList.add(tf("add-button"));
+      return button;
     }
 
     function _getActiveProject(projectList) {
