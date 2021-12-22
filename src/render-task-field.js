@@ -38,14 +38,17 @@ export const RenderTaskField = (() => {
     function _makeTaskList(project) {
       const list = document.createElement("div");
       list.classList.add(tf("task-list"));
-      project.taskList.forEach((task) => list.appendChild(_makeTaskItem(task)));
+      project.taskList.forEach((task, index) =>
+        list.appendChild(_makeTaskItem(task, index))
+      );
       return list;
 
-      function _makeTaskItem(task) {
+      function _makeTaskItem(task, index) {
         const item = document.createElement("span");
         item.classList = tf("task-item", {
           ["mark-done"]: task.taskCompleteStatus,
         });
+        item.dataset.taskIndex = index;
         item.appendChild(_makeTaskMainView(task));
         item.appendChild(_makeTaskExpandedView(task));
         return item;
