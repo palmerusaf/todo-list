@@ -135,17 +135,44 @@ export const RenderTaskField = (() => {
 
           function _makeEditTaskButton() {
             const button = Render.makeEditButton();
+            // button.addEventListener("click");
             return button;
           }
 
           function _makeDeleteTaskButton() {
             const button = Render.makeDeleteButton();
+            button.addEventListener("click", _deleteTask);
             return button;
+
+            function _deleteTask(clickEvent) {
+              pubsub.publish(
+                "taskDeleteClick",
+                _getIndicesOfClickEvent(clickEvent)
+              );
+            }
           }
 
           function _makeToggleCompleteTaskButton() {
             const button = Render.makeCheckButton();
+            button.addEventListener("click", toggleTaskComplete);
             return button;
+
+            function toggleTaskComplete(clickEvent) {
+              pubsub.publish(
+                "toggleTaskCompleteClick",
+                _getIndicesOfClickEvent(clickEvent)
+              );
+            }
+          }
+
+          function _getIndicesOfClickEvent(clickEvent) {
+            const taskIndex =
+              clickEvent.target.parentNode.parentNode.parentNode.dataset
+                .taskIndex;
+            const projectIndex =
+              clickEvent.target.parentNode.parentNode.parentNode.parentNode
+                .parentNode.dataset.projectIndex;
+            return { taskIndex, projectIndex };
           }
         }
       }
