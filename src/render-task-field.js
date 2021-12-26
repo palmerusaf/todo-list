@@ -3,6 +3,7 @@ import "./project-list-controller";
 import { pubsub } from "./pubsub.js";
 import bem from "easy-bem";
 import { formatDistance, formatDistanceToNow, subDays } from "date-fns";
+import { kebabCase, capitalize, camelCase } from "lodash";
 
 export const RenderTaskField = (() => {
   // for bem class names
@@ -43,46 +44,32 @@ export const RenderTaskField = (() => {
         list.appendChild(_makeTaskItem(task, index))
       );
       return list;
-      
+
       function _makeTaskItem(task, index) {
         const item = document.createElement("span");
         item.classList = tf("task-item", {
           ["mark-done"]: task.taskCompleteStatus,
         });
         item.dataset.taskIndex = index;
+        task.dueDate = _formatDueDate(task.dueDate);
         item.appendChild(_makeTaskMainView(task));
         item.appendChild(_makeTaskExpandedView(task));
         return item;
+
+        function _formatDueDate(dueDate) {
+          return formatDistanceToNow(new Date(dueDate), {
+            addSuffix: true,
+          }).replace("about ", "");
+        }
       }
 
       function _makeTaskMainView(task) {
         const container = document.createElement("div");
         container.classList = tf("main-view");
-        container.appendChild(_makeTaskTitle(task));
-        container.appendChild(_makeDueDate(task));
+        const mainTaskElements = ["title", "due date"];
+        _appendTaskElements(container, task, mainTaskElements);
         container.appendChild(_makeExpandButton());
         return container;
-
-        function _makeTaskTitle(task) {
-          const title = document.createElement("span");
-          title.classList = tf("title");
-          title.textContent = task.title;
-          return title;
-        }
-
-        function _makeDueDate(task) {
-          const dueDate = document.createElement("span");
-          const formattedDate = _formatDueDate(task.dueDate);
-          dueDate.classList = tf("dueDate");
-          dueDate.textContent = `Due Date: ${formattedDate}`;
-          return dueDate;
-
-          function _formatDueDate(dueDate) {
-            return formatDistanceToNow(new Date(dueDate), {
-              addSuffix: true,
-            }).replace("about ", "");
-          }
-        }
 
         function _makeExpandButton() {
           const button = Render.makeExpandButton();
@@ -109,23 +96,10 @@ export const RenderTaskField = (() => {
         function _makeDetailsField(task) {
           const container = document.createElement("div");
           container.classList.add(tf("details"));
-          container.appendChild(_makeDescription(task));
-          container.appendChild(_makePriority(task));
+          const taskDetailElements = ["description", "priority"];
+          _appendTaskElements(container, task, taskDetailElements);
           return container;
-
-          function _makeDescription(task) {
-            const description = document.createElement("span");
-            description.textContent = `Description: ${task.description}`;
-            return description;
-          }
-
-          function _makePriority(task) {
-            const priority = document.createElement("span");
-            priority.textContent = `Priority: ${task.priority}`;
-            return priority;
-          }
         }
-
         function _makeButtonField() {
           const container = document.createElement("div");
           container.classList = tf("button-field");
@@ -174,6 +148,27 @@ export const RenderTaskField = (() => {
               clickEvent.target.parentNode.parentNode.parentNode.parentNode
                 .parentNode.dataset.projectIndex;
             return { taskIndex, projectIndex };
+          }
+        }
+      }
+
+      function _appendTaskElements(container, task, taskElements) {
+        taskElements.forEach((taskElement) =>
+          container.appendChild(_makeTaskElement(task, taskElement))
+        );
+
+        function _makeTaskElement(task, elementType) {
+          const label = _makeLabel(elementType);
+          const span = document.createElement("span");
+          span.textContent = task[camelCase(elementType)];
+          label.appendChild(span);
+          return label;
+
+          function _makeLabel(elementType) {
+            const label = document.createElement("label");
+            label.classList = `${tf("label")} ${tf(kebabCase(elementType))}`;
+            label.textContent = capitalize(elementType) + ": ";
+            return label;
           }
         }
       }
