@@ -288,15 +288,23 @@ export const RenderTaskField = (() => {
         }
       }
 
-      function _submitTaskForm(clickEvent) {
-        clickEvent.preventDefault();
-        const form = clickEvent.target.parentNode;
-        // let task = { title: "" };
-        // task[title] = form.title.value;
-        // task[description] = form.description.value;
-        // task[dueDate] = form["due-date"].value;
-        // task[priority] = form.priority.value;
-        console.log(form.title.value);
+      function _submitTaskForm(event) {
+        event.preventDefault();
+        const form = event.target.parentNode;
+        const title = form[0].value;
+        const dueDate = form[1].value;
+        const description = form[2].value;
+        const priority = form[3].value;
+        const projectIndex =
+          event.target.parentNode.parentNode.dataset.projectIndex;
+        const task = {
+          title,
+          description,
+          dueDate,
+          priority,
+          projectIndex,
+        };
+        pubsub.publish("taskAddClick", task);
       }
     }
 
