@@ -64,8 +64,9 @@ export const RenderProjectField = (() => {
           button.addEventListener("click", _handleEditButtonClick);
           return button;
 
-          function _handleEditButtonClick() {
-            replaceLabelWithForm(this);
+          function _handleEditButtonClick(event) {
+            event.preventDefault();
+            replaceLabelWithForm(event);
 
             const test = (index) => {
               replaceLabelWithForm(index);
@@ -73,7 +74,7 @@ export const RenderProjectField = (() => {
             return test;
             function replaceLabelWithForm(clickEvent) {
               const projectIndex =
-                clickEvent.parentNode.parentNode.dataset.projectIndex;
+                clickEvent.target.parentNode.parentNode.dataset.projectIndex;
               const projectTitle = _getProjectTitle(projectIndex);
               const projectLabel = _getProjectLabel(projectIndex);
               const preFilledForm = _makeProjectEntryForm(
@@ -140,8 +141,6 @@ export const RenderProjectField = (() => {
       function _makeForm(projectTitle) {
         const form = document.createElement("form");
         form.classList = pf("form");
-        form.action = "#";
-        form.onsubmit = "return false";
         const textEntryBox = _makeTextEntryBox(projectTitle);
         const submitButton = _makeSubmitButton();
         form.appendChild(textEntryBox);
@@ -162,8 +161,9 @@ export const RenderProjectField = (() => {
           button.addEventListener("click", _submitEntryForm);
           return button;
 
-          function _submitEntryForm() {
-            const title = this.parentNode[0].value;
+          function _submitEntryForm(event) {
+            event.preventDefault();
+            const title = event.target.parentNode[0].value;
             if (title === "") return;
             const projectIndex =
               this.parentNode.parentNode.dataset.projectIndex;

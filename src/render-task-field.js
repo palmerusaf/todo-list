@@ -190,8 +190,6 @@ export const RenderTaskField = (() => {
       function _makeFormContainer() {
         const form = document.createElement("form");
         form.classList = `${tf("task-item")} ${tForm()}`;
-        form.action = "#";
-        form.onsubmit = "return false";
         return form;
       }
 
@@ -291,7 +289,14 @@ export const RenderTaskField = (() => {
       }
 
       function _submitTaskForm(clickEvent) {
-        console.log(clickEvent);
+        clickEvent.preventDefault();
+        const form = clickEvent.target.parentNode;
+        // let task = { title: "" };
+        // task[title] = form.title.value;
+        // task[description] = form.description.value;
+        // task[dueDate] = form["due-date"].value;
+        // task[priority] = form.priority.value;
+        console.log(form.title.value);
       }
     }
 
