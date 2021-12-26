@@ -29,9 +29,6 @@ export const RenderTaskField = (() => {
     taskField.appendChild(_makeProjectTitle(project));
     taskField.appendChild(_makeTaskList(project));
     taskField.appendChild(_makeAddNewTaskButton());
-    // TO-DO Delete this line after testing
-    taskField.appendChild(_makeNewTaskEntryForm());
-    // TO-DO Delete this line after testing
     return taskField;
 
     function _makeProjectTitle(project) {
@@ -176,10 +173,12 @@ export const RenderTaskField = (() => {
     function _makeAddNewTaskButton() {
       const button = Render.makeAddButton();
       button.classList.add(tf("add-button"));
-      button.addEventListener("click", () =>
-        taskField.appendChild(_makeNewTaskEntryForm())
-      );
+      button.addEventListener("click", _appendTaskForm, { once: true });
       return button;
+    }
+
+    function _appendTaskForm(event) {
+      taskField.insertBefore(_makeNewTaskEntryForm(), event.target);
     }
 
     function _makeNewTaskEntryForm() {
@@ -220,6 +219,7 @@ export const RenderTaskField = (() => {
             function _makeDateEntryBox() {
               const dateBox = document.createElement("input");
               dateBox.type = "date";
+              dateBox.required = "true";
               dateBox.name = "due-date";
               return dateBox;
             }
@@ -247,6 +247,7 @@ export const RenderTaskField = (() => {
             function _makePrioritySelector() {
               const selector = document.createElement("select");
               selector.classList = tf("selector");
+              selector.required = "true";
               const placeholder = document.createElement("option");
               placeholder.value = "";
               placeholder.textContent = "Level";
@@ -275,6 +276,7 @@ export const RenderTaskField = (() => {
           const entryBox = document.createElement("input");
           entryBox.classList = `project-field__text-box ${tForm("text-box")}`;
           entryBox.type = "text";
+          entryBox.required = "true";
           entryBox.name = kebabCase(elementType);
           entryBox.placeholder = `Enter task ${elementType}`;
           return entryBox;
@@ -291,6 +293,7 @@ export const RenderTaskField = (() => {
       function _submitTaskForm(event) {
         event.preventDefault();
         const form = event.target.parentNode;
+        if (!form.checkValidity()) return;
         const title = form[0].value;
         const dueDate = form[1].value;
         const description = form[2].value;
