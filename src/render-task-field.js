@@ -51,16 +51,9 @@ export const RenderTaskField = (() => {
           ["mark-done"]: task.taskCompleteStatus,
         });
         item.dataset.taskIndex = index;
-        task.dueDate = _formatDueDate(task.dueDate);
         item.appendChild(_makeTaskMainView(task));
         item.appendChild(_makeTaskExpandedView(task));
         return item;
-
-        function _formatDueDate(dueDate) {
-          return formatDistanceToNow(new Date(dueDate), {
-            addSuffix: true,
-          }).replace("about ", "");
-        }
       }
 
       function _makeTaskMainView(task) {
@@ -151,25 +144,32 @@ export const RenderTaskField = (() => {
           }
         }
       }
+    }
+    function _appendTaskElements(container, task, taskElements) {
+      taskElements.forEach((taskElement) =>
+        container.appendChild(_makeTaskElement(task, taskElement))
+      );
 
-      function _appendTaskElements(container, task, taskElements) {
-        taskElements.forEach((taskElement) =>
-          container.appendChild(_makeTaskElement(task, taskElement))
-        );
+      function _makeTaskElement(task, elementType) {
+        const label = _makeLabel(elementType);
+        const span = document.createElement("span");
+        elementType === "due date"
+          ? (span.textContent = _formatDueDate(task[camelCase(elementType)]))
+          : (span.textContent = task[camelCase(elementType)]);
+        label.appendChild(span);
+        return label;
 
-        function _makeTaskElement(task, elementType) {
-          const label = _makeLabel(elementType);
-          const span = document.createElement("span");
-          span.textContent = task[camelCase(elementType)];
-          label.appendChild(span);
+        function _makeLabel(elementType) {
+          const label = document.createElement("label");
+          label.classList = `${tf("label")} ${tf(kebabCase(elementType))}`;
+          label.textContent = capitalize(elementType) + ": ";
           return label;
+        }
 
-          function _makeLabel(elementType) {
-            const label = document.createElement("label");
-            label.classList = `${tf("label")} ${tf(kebabCase(elementType))}`;
-            label.textContent = capitalize(elementType) + ": ";
-            return label;
-          }
+        function _formatDueDate(dueDate) {
+          return formatDistanceToNow(new Date(dueDate), {
+            addSuffix: true,
+          }).replace("about ", "");
         }
       }
     }
