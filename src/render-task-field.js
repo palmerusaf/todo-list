@@ -111,11 +111,37 @@ export const RenderTaskField = (() => {
 
             function _replaceTaskItemWithPreFilledForm(event) {
               const taskNode = _getTaskNodeFromEvent(event);
-              // const preFilledForm = _makePreFilledForm(taskNode);
+              const preFilledForm = _makePreFilledForm(taskNode);
               // taskField.replaceChild(preFilledForm, taskNode);
 
               function _getTaskNodeFromEvent(event) {
                 return event.target.parentNode.parentNode.parentNode;
+              }
+
+              function _makePreFilledForm(taskNode) {
+                const taskData = _scrapDataFromTaskNode(taskNode);
+                console.log(taskData);
+
+                function _scrapDataFromTaskNode(taskNode) {
+                  const taskIndex = taskNode.dataset.taskIndex;
+                  const dueDate = taskNode.dataset.dueDate;
+                  const title = taskNode.querySelector(
+                    `.${tf("title")} span`
+                  ).textContent;
+                  const description = taskNode.querySelector(
+                    `.${tf("description")} span`
+                  ).textContent;
+                  const priority = taskNode.querySelector(
+                    `.${tf("priority")} span`
+                  ).textContent;
+                  return {
+                    taskIndex,
+                    dueDate,
+                    title,
+                    description,
+                    priority,
+                  };
+                }
               }
             }
           }
