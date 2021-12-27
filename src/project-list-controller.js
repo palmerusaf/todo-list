@@ -1,6 +1,7 @@
 import { projectBuilder } from "./project-builder.js";
 import { pubsub } from "./pubsub.js";
 import { taskBuilder } from "./task-builder.js";
+import "./local-storage";
 
 export const projectListController = (function () {
   let projectList = [];
@@ -11,9 +12,11 @@ export const projectListController = (function () {
   pubsub.subscribe("projectAddClick", addProject);
   pubsub.subscribe("projectSetActiveClick", setActiveProject);
   pubsub.subscribe("toggleTaskCompleteClick", toggleTaskComplete);
+  pubsub.publish("requestDataFromLocalStorage");
 
   function initProjectList(storedList) {
     projectList = storedList || buildDefaultList();
+    if (projectList.length === 0) projectList = buildDefaultList();
     pubsub.publish("updateListOfProjects", projectList);
   }
 

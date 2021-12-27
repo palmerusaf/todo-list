@@ -1,8 +1,7 @@
 import { Render } from "./render.js";
-import "./project-list-controller";
 import { pubsub } from "./pubsub.js";
 import bem from "easy-bem";
-import { formatDistance, formatDistanceToNow, subDays } from "date-fns";
+import { formatDistanceToNow } from "date-fns";
 import { kebabCase, capitalize, camelCase } from "lodash";
 
 export const RenderTaskField = (() => {
@@ -16,7 +15,6 @@ export const RenderTaskField = (() => {
   // Initialize taskField
   const taskField = document.createElement("div");
   taskField.classList.add(tf());
-  taskField.textContent = "test";
 
   function renderTaskFieldContent(projectList) {
     taskField.textContent = "";

@@ -5,7 +5,7 @@ import { pubsub } from "../pubsub";
 import { projectListPrototype } from "./project-builder-test";
 
 // initialize project field
-pubsub.publish("loadProjectList", projectListPrototype);
+// pubsub.publish("loadProjectList", projectListPrototype);
 // pubsub.publish("loadProjectList");
 const container = document.createElement("div");
 container.style.display = "flex";

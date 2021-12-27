@@ -1,4 +1,4 @@
-<diagram program="umletino" version="14.4.0-SNAPSHOT"><zoom_level>10</zoom_level><help_text>Space for diagram note</help_text><element><id>UMLClass</id><coordinates><x>505</x><y>519</y><w>230</w><h>140</h></coordinates><panel_attributes>LocalStorage
+<diagram program="umletino" version="14.4.0-SNAPSHOT"><zoom_level>10</zoom_level><help_text>Space for diagram note</help_text><element><id>UMLClass</id><coordinates><x>465</x><y>529</y><w>230</w><h>140</h></coordinates><panel_attributes>LocalStorage
 --
 _Responsibility_
 -- Store/Retrieve Data from local machine
@@ -8,7 +8,7 @@ _Attributes_
 --
 _Functions_
 getList(): 
-setList(Event)</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>1025</x><y>529</y><w>170</w><h>140</h></coordinates><panel_attributes>&lt;&lt;Factory Function&gt;&gt;
+setList(Event)</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>985</x><y>539</y><w>170</w><h>140</h></coordinates><panel_attributes>&lt;&lt;Factory Function&gt;&gt;
 Project
 --
 _Responsibility_
@@ -18,7 +18,7 @@ _Attributes_
 + title: string
 + taskList: Task[...]
 + activeStatus: bool
-</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>790</x><y>529</y><w>160</w><h>170</h></coordinates><panel_attributes>&lt;&lt;Factory Function&gt;&gt;
+</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>750</x><y>539</y><w>160</w><h>170</h></coordinates><panel_attributes>&lt;&lt;Factory Function&gt;&gt;
 Task
 --
 _Responsibility_
@@ -31,7 +31,7 @@ _Attributes_
 + priority: int
 + taskCompleteStatus: bool
 
-</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>210</x><y>169</y><w>270</w><h>220</h></coordinates><panel_attributes>Render
+</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>170</x><y>179</y><w>270</w><h>220</h></coordinates><panel_attributes>Render
 --
 _Responsibility_
 -- Store shared funcs and export dependencies
@@ -44,7 +44,7 @@ _Functions_
 + makeAddItemButton
 + makeEditItemButton
 + makeDeleteItemButton
-+ makeSubmitItemButton</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>635</x><y>219</y><w>220</w><h>240</h></coordinates><panel_attributes>PubSub
++ makeSubmitItemButton</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>595</x><y>229</y><w>220</w><h>240</h></coordinates><panel_attributes>PubSub
 --
 _Responsibility_
 -- Act as go between for module events
@@ -54,11 +54,11 @@ _Attributes_
 --
 _Functions_
 + publish(eventName: string, data)
-+ subscribe(eventName: string, function)</panel_attributes><additional_attributes></additional_attributes></element><element><id>Relation</id><coordinates><x>940</x><y>549</y><w>100</w><h>40</h></coordinates><panel_attributes>lt=&lt;&lt;&lt;&lt;&lt;-
++ subscribe(eventName: string, function)</panel_attributes><additional_attributes></additional_attributes></element><element><id>Relation</id><coordinates><x>900</x><y>559</y><w>100</w><h>40</h></coordinates><panel_attributes>lt=&lt;&lt;&lt;&lt;&lt;-
 m1=1
-m2=0..*</panel_attributes><additional_attributes>80;10;10;10</additional_attributes></element><element><id>Relation</id><coordinates><x>1090</x><y>449</y><w>50</w><h>100</h></coordinates><panel_attributes>lt=&lt;&lt;&lt;&lt;&lt;-
+m2=0..*</panel_attributes><additional_attributes>80;10;10;10</additional_attributes></element><element><id>Relation</id><coordinates><x>1050</x><y>459</y><w>50</w><h>100</h></coordinates><panel_attributes>lt=&lt;&lt;&lt;&lt;&lt;-
 m1=1
-m2=0..*</panel_attributes><additional_attributes>10;10;10;80</additional_attributes></element><element><id>UMLClass</id><coordinates><x>1015</x><y>189</y><w>240</w><h>270</h></coordinates><panel_attributes>List of Projects
+m2=0..*</panel_attributes><additional_attributes>10;10;10;80</additional_attributes></element><element><id>UMLClass</id><coordinates><x>975</x><y>199</y><w>240</w><h>270</h></coordinates><panel_attributes>List of Projects
 --
 _Responsibility_
 -- Store Projects
@@ -73,32 +73,32 @@ _Functions_
 + createProject(Event): Project[...]
 + setActiveProject(Event): Project[...]
 + toggleTaskComplete(Event): Project[...]
-</panel_attributes><additional_attributes></additional_attributes></element><element><id>Relation</id><coordinates><x>470</x><y>369</y><w>180</w><h>50</h></coordinates><panel_attributes>lt=&lt;-
-Sub 'updateListOfProjects'</panel_attributes><additional_attributes>10;10;20;10;20;30;160;30</additional_attributes></element><element><id>Relation</id><coordinates><x>570</x><y>409</y><w>170</w><h>130</h></coordinates><panel_attributes>lt=&lt;-
-Sub 'updateListOfProjects'</panel_attributes><additional_attributes>10;110;10;10;60;10</additional_attributes></element><element><id>Relation</id><coordinates><x>850</x><y>399</y><w>180</w><h>40</h></coordinates><panel_attributes>lt=&lt;-
-Pub 'updateListOfProjects'</panel_attributes><additional_attributes>10;20;160;20</additional_attributes></element><element><id>Relation</id><coordinates><x>470</x><y>319</y><w>180</w><h>40</h></coordinates><panel_attributes>lt=&lt;-
-Pub 'projectDeleteClick'</panel_attributes><additional_attributes>160;20;10;20</additional_attributes></element><element><id>Relation</id><coordinates><x>470</x><y>239</y><w>180</w><h>40</h></coordinates><panel_attributes>lt=&lt;-
-Pub 'taskDeleteClick'</panel_attributes><additional_attributes>160;20;10;20</additional_attributes></element><element><id>Relation</id><coordinates><x>470</x><y>219</y><w>180</w><h>40</h></coordinates><panel_attributes>lt=&lt;-
-Pub 'taskCreateClick'</panel_attributes><additional_attributes>160;20;10;20</additional_attributes></element><element><id>Relation</id><coordinates><x>470</x><y>299</y><w>180</w><h>40</h></coordinates><panel_attributes>lt=&lt;-
-Pub 'projectCreateClick'</panel_attributes><additional_attributes>160;20;10;20</additional_attributes></element><element><id>Relation</id><coordinates><x>470</x><y>339</y><w>180</w><h>40</h></coordinates><panel_attributes>lt=&lt;-
-Pub 'projectSetActiveClick'</panel_attributes><additional_attributes>160;20;10;20</additional_attributes></element><element><id>Relation</id><coordinates><x>850</x><y>339</y><w>180</w><h>40</h></coordinates><panel_attributes>lt=&lt;-
-Sub 'projectSetActiveClick'</panel_attributes><additional_attributes>160;20;10;20</additional_attributes></element><element><id>Relation</id><coordinates><x>850</x><y>319</y><w>180</w><h>40</h></coordinates><panel_attributes>lt=&lt;-
-Sub 'projectCreateClick'</panel_attributes><additional_attributes>160;20;10;20</additional_attributes></element><element><id>Relation</id><coordinates><x>850</x><y>299</y><w>180</w><h>40</h></coordinates><panel_attributes>lt=&lt;-
-Sub 'projectDeleteClick'</panel_attributes><additional_attributes>160;20;10;20</additional_attributes></element><element><id>Relation</id><coordinates><x>850</x><y>239</y><w>180</w><h>40</h></coordinates><panel_attributes>lt=&lt;-
-Sub 'taskDeleteClick'</panel_attributes><additional_attributes>160;20;10;20</additional_attributes></element><element><id>Relation</id><coordinates><x>850</x><y>219</y><w>180</w><h>40</h></coordinates><panel_attributes>lt=&lt;-
-Sub 'taskCreateClick'</panel_attributes><additional_attributes>160;20;10;20</additional_attributes></element><element><id>Relation</id><coordinates><x>650</x><y>449</y><w>170</w><h>90</h></coordinates><panel_attributes>lt=&lt;-
-Pub 'initFromLocalStorage'</panel_attributes><additional_attributes>150;10;150;50;10;50;10;70</additional_attributes></element><element><id>Relation</id><coordinates><x>850</x><y>429</y><w>180</w><h>40</h></coordinates><panel_attributes>lt=&lt;-
-Sub 'initFromLocalStorage'</panel_attributes><additional_attributes>160;20;10;20</additional_attributes></element><element><id>Relation</id><coordinates><x>470</x><y>199</y><w>180</w><h>40</h></coordinates><panel_attributes>lt=&lt;-
-Pub 'toggleTaskComplete'</panel_attributes><additional_attributes>160;20;10;20</additional_attributes></element><element><id>Relation</id><coordinates><x>840</x><y>199</y><w>190</w><h>40</h></coordinates><panel_attributes>lt=&lt;-
-Sub 'toggleTaskComplete'</panel_attributes><additional_attributes>170;20;15;20</additional_attributes></element><element><id>UMLClass</id><coordinates><x>695</x><y>60</y><w>100</w><h>30</h></coordinates><panel_attributes>/_TO-DO LIST_/</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>310</x><y>19</y><w>170</w><h>120</h></coordinates><panel_attributes>Index
+</panel_attributes><additional_attributes></additional_attributes></element><element><id>Relation</id><coordinates><x>430</x><y>379</y><w>180</w><h>50</h></coordinates><panel_attributes>lt=&lt;-
+Sub 'updateListOfProjects'</panel_attributes><additional_attributes>10;10;20;10;20;30;160;30</additional_attributes></element><element><id>Relation</id><coordinates><x>530</x><y>419</y><w>170</w><h>130</h></coordinates><panel_attributes>lt=&lt;-
+Sub 'updateListOfProjects'</panel_attributes><additional_attributes>10;110;10;10;60;10</additional_attributes></element><element><id>Relation</id><coordinates><x>810</x><y>409</y><w>180</w><h>40</h></coordinates><panel_attributes>lt=&lt;-
+Pub 'updateListOfProjects'</panel_attributes><additional_attributes>10;20;160;20</additional_attributes></element><element><id>Relation</id><coordinates><x>430</x><y>329</y><w>180</w><h>40</h></coordinates><panel_attributes>lt=&lt;-
+Pub 'projectDeleteClick'</panel_attributes><additional_attributes>160;20;10;20</additional_attributes></element><element><id>Relation</id><coordinates><x>430</x><y>249</y><w>180</w><h>40</h></coordinates><panel_attributes>lt=&lt;-
+Pub 'taskDeleteClick'</panel_attributes><additional_attributes>160;20;10;20</additional_attributes></element><element><id>Relation</id><coordinates><x>430</x><y>229</y><w>180</w><h>40</h></coordinates><panel_attributes>lt=&lt;-
+Pub 'taskCreateClick'</panel_attributes><additional_attributes>160;20;10;20</additional_attributes></element><element><id>Relation</id><coordinates><x>430</x><y>309</y><w>180</w><h>40</h></coordinates><panel_attributes>lt=&lt;-
+Pub 'projectCreateClick'</panel_attributes><additional_attributes>160;20;10;20</additional_attributes></element><element><id>Relation</id><coordinates><x>430</x><y>349</y><w>180</w><h>40</h></coordinates><panel_attributes>lt=&lt;-
+Pub 'projectSetActiveClick'</panel_attributes><additional_attributes>160;20;10;20</additional_attributes></element><element><id>Relation</id><coordinates><x>810</x><y>349</y><w>180</w><h>40</h></coordinates><panel_attributes>lt=&lt;-
+Sub 'projectSetActiveClick'</panel_attributes><additional_attributes>160;20;10;20</additional_attributes></element><element><id>Relation</id><coordinates><x>810</x><y>329</y><w>180</w><h>40</h></coordinates><panel_attributes>lt=&lt;-
+Sub 'projectCreateClick'</panel_attributes><additional_attributes>160;20;10;20</additional_attributes></element><element><id>Relation</id><coordinates><x>810</x><y>309</y><w>180</w><h>40</h></coordinates><panel_attributes>lt=&lt;-
+Sub 'projectDeleteClick'</panel_attributes><additional_attributes>160;20;10;20</additional_attributes></element><element><id>Relation</id><coordinates><x>810</x><y>249</y><w>180</w><h>40</h></coordinates><panel_attributes>lt=&lt;-
+Sub 'taskDeleteClick'</panel_attributes><additional_attributes>160;20;10;20</additional_attributes></element><element><id>Relation</id><coordinates><x>810</x><y>229</y><w>180</w><h>40</h></coordinates><panel_attributes>lt=&lt;-
+Sub 'taskCreateClick'</panel_attributes><additional_attributes>160;20;10;20</additional_attributes></element><element><id>Relation</id><coordinates><x>610</x><y>459</y><w>170</w><h>90</h></coordinates><panel_attributes>lt=&lt;-
+Pub 'initFromLocalStorage'</panel_attributes><additional_attributes>150;10;150;50;10;50;10;70</additional_attributes></element><element><id>Relation</id><coordinates><x>810</x><y>439</y><w>180</w><h>40</h></coordinates><panel_attributes>lt=&lt;-
+Sub 'initFromLocalStorage'</panel_attributes><additional_attributes>160;20;10;20</additional_attributes></element><element><id>Relation</id><coordinates><x>430</x><y>209</y><w>180</w><h>40</h></coordinates><panel_attributes>lt=&lt;-
+Pub 'toggleTaskComplete'</panel_attributes><additional_attributes>160;20;10;20</additional_attributes></element><element><id>Relation</id><coordinates><x>800</x><y>209</y><w>190</w><h>40</h></coordinates><panel_attributes>lt=&lt;-
+Sub 'toggleTaskComplete'</panel_attributes><additional_attributes>170;20;15;20</additional_attributes></element><element><id>UMLClass</id><coordinates><x>655</x><y>70</y><w>100</w><h>30</h></coordinates><panel_attributes>/_TO-DO LIST_/</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>270</x><y>29</y><w>170</w><h>120</h></coordinates><panel_attributes>Index
 --
 _Responsibility_
 -- Adds items to page
 --
 _Attributes_
 - contentContainer
-- footer</panel_attributes><additional_attributes></additional_attributes></element><element><id>Relation</id><coordinates><x>385</x><y>130</y><w>30</w><h>60</h></coordinates><panel_attributes>lt=&lt;.
-</panel_attributes><additional_attributes>10;10;10;40</additional_attributes></element><element><id>UMLClass</id><coordinates><x>40</x><y>479</y><w>220</w><h>220</h></coordinates><panel_attributes>RenderProjectField
+- footer</panel_attributes><additional_attributes></additional_attributes></element><element><id>Relation</id><coordinates><x>345</x><y>140</y><w>30</w><h>60</h></coordinates><panel_attributes>lt=&lt;.
+</panel_attributes><additional_attributes>10;10;10;40</additional_attributes></element><element><id>UMLClass</id><coordinates><x>0</x><y>489</y><w>220</w><h>220</h></coordinates><panel_attributes>RenderProjectField
 --
 _Responsibility_
 -- Handle project list rendering
@@ -114,7 +114,7 @@ _Functions_
 - makeProjectEntryForm
 - makeProjectSubmitFormButton
 
-</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>270</x><y>479</y><w>210</w><h>290</h></coordinates><panel_attributes>RenderTaskField
+</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>230</x><y>489</y><w>210</w><h>290</h></coordinates><panel_attributes>RenderTaskField
 --
 _Responsibility_
 -- Handle task list rendering
@@ -131,10 +131,10 @@ _Functions_
 - makeTaskEntryForm
 - makeTaskSubmitFormButton
 - makeToggleTaskCompleteButton
-- makeExpandTaskDetailsButton</panel_attributes><additional_attributes></additional_attributes></element><element><id>Relation</id><coordinates><x>195</x><y>380</y><w>100</w><h>120</h></coordinates><panel_attributes>lt=&lt;.
-</panel_attributes><additional_attributes>80;10;80;50;10;50;10;100</additional_attributes></element><element><id>Relation</id><coordinates><x>395</x><y>380</y><w>30</w><h>120</h></coordinates><panel_attributes>lt=&lt;.
-</panel_attributes><additional_attributes>10;10;10;100</additional_attributes></element><element><id>UMLNote</id><coordinates><x>40</x><y>320</y><w>140</w><h>70</h></coordinates><panel_attributes>Note..
+- makeExpandTaskDetailsButton</panel_attributes><additional_attributes></additional_attributes></element><element><id>Relation</id><coordinates><x>155</x><y>390</y><w>100</w><h>120</h></coordinates><panel_attributes>lt=&lt;.
+</panel_attributes><additional_attributes>80;10;80;50;10;50;10;100</additional_attributes></element><element><id>Relation</id><coordinates><x>355</x><y>390</y><w>30</w><h>120</h></coordinates><panel_attributes>lt=&lt;.
+</panel_attributes><additional_attributes>10;10;10;100</additional_attributes></element><element><id>UMLNote</id><coordinates><x>0</x><y>330</y><w>140</w><h>70</h></coordinates><panel_attributes>Note..
 bg=blue
 PubSubs will be handled
-by dependencies</panel_attributes><additional_attributes></additional_attributes></element><element><id>Relation</id><coordinates><x>170</x><y>350</y><w>60</w><h>40</h></coordinates><panel_attributes>lt=-
+by dependencies</panel_attributes><additional_attributes></additional_attributes></element><element><id>Relation</id><coordinates><x>130</x><y>360</y><w>60</w><h>40</h></coordinates><panel_attributes>lt=-
 </panel_attributes><additional_attributes>10;20;40;20</additional_attributes></element></diagram>
