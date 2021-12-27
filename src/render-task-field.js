@@ -52,6 +52,7 @@ export const RenderTaskField = (() => {
           ["mark-done"]: task.taskCompleteStatus,
         });
         item.dataset.taskIndex = index;
+        item.dataset.dueDate = task.dueDate;
         item.appendChild(_makeTaskMainView(task));
         item.appendChild(_makeTaskExpandedView(task));
         return item;
