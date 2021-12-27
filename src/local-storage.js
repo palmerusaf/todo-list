@@ -1,11 +1,14 @@
 import { pubsub } from "./pubsub.js";
 
 export const LocalStorage = (() => {
-  pubsub.publish("loadProjectList", _getSavedData());
   pubsub.subscribe("updateListOfProjects", _saveDataLocally);
+  pubsub.subscribe("requestDataFromLocalStorage", _getSavedData);
 
   function _getSavedData() {
-    return JSON.parse(localStorage.getItem("savedData"));
+    pubsub.publish(
+      "loadProjectList",
+      JSON.parse(window.localStorage.getItem("savedData"))
+    );
   }
 
   function _saveDataLocally(data) {

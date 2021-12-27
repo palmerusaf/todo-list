@@ -1,5 +1,4 @@
 import { Render } from "./render.js";
-import "./project-list-controller";
 import { pubsub } from "./pubsub.js";
 import bem from "easy-bem";
 
