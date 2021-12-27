@@ -106,8 +106,18 @@ export const RenderTaskField = (() => {
 
           function _makeEditTaskButton() {
             const button = Render.makeEditButton();
-            // button.addEventListener("click");
+            button.addEventListener("click", _replaceTaskItemWithPreFilledForm);
             return button;
+
+            function _replaceTaskItemWithPreFilledForm(event) {
+              const taskNode = _getTaskNodeFromEvent(event);
+              // const preFilledForm = _makePreFilledForm(taskNode);
+              // taskField.replaceChild(preFilledForm, taskNode);
+
+              function _getTaskNodeFromEvent(event){
+
+              }
+            }
           }
 
           function _makeDeleteTaskButton() {
