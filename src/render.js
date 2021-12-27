@@ -35,10 +35,15 @@ export const Render = (() => {
     return _makeIconButton("check");
   };
 
+  const makeExpandButton = () => {
+    return _makeIconButton("arrow_back_ios");
+  };
+
   return {
     makeAddButton,
     makeEditButton,
     makeDeleteButton,
     makeCheckButton,
+    makeExpandButton,
   };
 })();

@@ -9,6 +9,7 @@ $sandy-brown: #f4a261ff
 $burnt-sienna: #e76f51ff
 *
     margin: 0
+    box-sizing: border-box
     font-family: sans-serif
 .button
     background: none
@@ -81,3 +82,102 @@ $burnt-sienna: #e76f51ff
     @media (not(hover))
         &__item--active &__buttons
             display: inline-flex
+
+.task-field
+    display: flex
+    flex-direction: column
+    width: 75%
+    align-items: center
+    background-color: $persian-green
+    &__project-title
+        padding: 16px
+        color: white
+        font-weight: 600
+        @media (max-width: 811px)
+            &
+                font-size: 20px
+                padding: 9px
+    &__task-list
+        width: 100%
+        display: flex
+        flex-direction: column
+        align-items: center
+    &__task-item
+        align-items: center
+        background-color: $charcoal
+        color: white
+        padding: 4px
+        border-radius: 9px
+        margin: 4px 0
+        width: 75%
+        &:hover
+            background-color: $charcoal-hover
+        @media (max-width: 811px)
+            &
+                width: 92%
+                font-size: 12px
+        &--mark-done
+            background-color: $charcoal-dark
+            color: grey
+            & span
+                text-decoration: line-through
+    &__main-view
+        align-items: center
+        display: flex
+        justify-content: space-between
+        gap: 9px
+    &__title
+        padding-left: 12px
+    &__dueDate
+    &__expand-button
+        transition: 500ms
+        &--rotate
+            transform: rotate(-90deg)
+            transition: 500ms
+    &__expanded-view
+        opacity: 1
+        display: flex
+        justify-content: space-between
+        transform: scale(1)
+        transition: 400ms
+        width: 100%
+        &--hidden
+            opacity: 0
+            transition: 400ms
+            transform: scale(0)
+            height: 0
+    &__details
+        display: flex
+        margin-left: 20px
+        flex-direction: column
+        width: 50%
+    &__button-field
+        padding-right: 12px
+    &__add-button
+        padding: 8px
+        margin-top: 10px
+
+.task-form
+    padding: .9rem
+    margin-top: 1rem
+    gap: 8px
+    display: flex
+    flex-direction: column
+    &:hover
+        background-color: $charcoal
+    &__text-box
+        width: 20ch
+    &__top,
+    &__bottom
+        display: flex
+        width: 100%
+        padding: 0 10px
+        justify-content: space-between
+    &__title
+        padding: 0
+    &__submit
+        width: 100%
+        border-radius: 8px
+        background-color: $charcoal-dark
+        &:hover
+            background-color: $charcoal-hover
