@@ -342,9 +342,7 @@ export const RenderTaskField = (() => {
         const dueDate = form[1].value;
         const description = form[2].value;
         const priority = form[3].value;
-        const projectIndex =
-          event.target.parentNode.parentNode.dataset.projectIndex ||
-          event.target.parentNode.parentNode.parentNode.dataset.projectIndex;
+        const projectIndex = taskField.dataset.projectIndex;
         const taskIndex = form.dataset.taskIndex;
         const task = {
           title,
