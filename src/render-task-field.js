@@ -114,8 +114,8 @@ export const RenderTaskField = (() => {
               // const preFilledForm = _makePreFilledForm(taskNode);
               // taskField.replaceChild(preFilledForm, taskNode);
 
-              function _getTaskNodeFromEvent(event){
-
+              function _getTaskNodeFromEvent(event) {
+                return event.target.parentNode.parentNode.parentNode;
               }
             }
           }
