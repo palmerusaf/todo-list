@@ -374,10 +374,3 @@ export const RenderTaskField = (() => {
 
   return { taskField };
 })();
-// {
-// "title": "task0 for project b",
-// "description": "description0",
-// "dueDate": "1989-10-24T17:00:00.000Z",
-// "priority": "0",
-// "taskCompleteStatus": false
-//   }
