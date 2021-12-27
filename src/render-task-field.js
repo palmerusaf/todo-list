@@ -112,7 +112,8 @@ export const RenderTaskField = (() => {
             function _replaceTaskItemWithPreFilledForm(event) {
               const taskNode = _getTaskNodeFromEvent(event);
               const preFilledForm = _makePreFilledForm(taskNode);
-              // taskField.replaceChild(preFilledForm, taskNode);
+              const taskList = document.querySelector(`.${tf("task-list")}`);
+              taskList.replaceChild(preFilledForm, taskNode);
 
               function _getTaskNodeFromEvent(event) {
                 return event.target.parentNode.parentNode.parentNode;
@@ -120,7 +121,13 @@ export const RenderTaskField = (() => {
 
               function _makePreFilledForm(taskNode) {
                 const taskData = _scrapDataFromTaskNode(taskNode);
-                console.log(taskData);
+                const form = _makeNewTaskEntryForm();
+                form[0].value = taskData.title;
+                form[1].valueAsDate = new Date(`${taskData.dueDate}`);
+                form[2].value = taskData.description;
+                form[3].value = taskData.priority;
+                form.dataset.taskIndex = taskData.taskIndex;
+                return form;
 
                 function _scrapDataFromTaskNode(taskNode) {
                   const taskIndex = taskNode.dataset.taskIndex;
@@ -336,13 +343,16 @@ export const RenderTaskField = (() => {
         const description = form[2].value;
         const priority = form[3].value;
         const projectIndex =
-          event.target.parentNode.parentNode.dataset.projectIndex;
+          event.target.parentNode.parentNode.dataset.projectIndex ||
+          event.target.parentNode.parentNode.parentNode.dataset.projectIndex;
+        const taskIndex = form.dataset.taskIndex;
         const task = {
           title,
           description,
           dueDate,
           priority,
           projectIndex,
+          taskIndex,
         };
         pubsub.publish("taskAddClick", task);
       }
