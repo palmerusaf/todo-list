@@ -15,6 +15,8 @@ $burnt-sienna: #e76f51ff
 
 .to-do-list
     display: flex
+    max-height: fit-content
+    min-height: 100vh
 
 .button
     background: none
@@ -38,7 +40,11 @@ $burnt-sienna: #e76f51ff
     gap: 10px
     color: white
     background-color: $charcoal
+    transition: 400ms
     padding: 10px
+    &--expand
+        transition: 400ms
+        width: 100%
     &__item
         border-radius: 5px
         background-color: $charcoal-dark
@@ -81,7 +87,21 @@ $burnt-sienna: #e76f51ff
         padding-left: 8px
         border-radius: 5px
         width: 75%
+    &__expand-button
+        visibility: hidden
+        height: 0
+        transform: rotate(180deg)
+        transition: 400ms
+        align-self: end
+        width: fit-content
+        &--rotate
+            transition: 400ms
+            transform: rotate(0deg)
     @media (max-width: 811px)
+        &__expand-button
+            display: inline
+            visibility: visible
+            height: fit-content
         &__item--active &__buttons
             display: inline-flex
     @media (not(hover))
