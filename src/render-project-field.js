@@ -28,7 +28,9 @@ export const RenderProjectField = (() => {
       return button;
 
       function _expandProjectField(event) {
-        console.log(event);
+        const expandButton = event.target;
+        expandButton.classList.toggle(pf("expand-button") + "--rotate");
+        projectField.classList.toggle(pf() + "--expand");
       }
     }
 
