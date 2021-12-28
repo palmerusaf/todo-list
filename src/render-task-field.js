@@ -27,6 +27,7 @@ export const RenderTaskField = (() => {
     taskField.appendChild(_makeProjectTitle(project));
     taskField.appendChild(_makeTaskList(project));
     taskField.appendChild(_makeAddNewTaskButton());
+    taskField.appendChild(_makeNewTaskEntryForm());
     return taskField;
 
     function _makeProjectTitle(project) {
@@ -353,7 +354,6 @@ export const RenderTaskField = (() => {
         pubsub.publish("taskAddClick", task);
       }
     }
-
     function _makeLabel(elementType) {
       const label = document.createElement("label");
       label.classList = `${tf("label")} ${tf(kebabCase(elementType))}`;

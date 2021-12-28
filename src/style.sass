@@ -190,6 +190,16 @@ $burnt-sienna: #e76f51ff
     gap: 8px
     display: flex
     flex-direction: column
+    @media (max-width: 811px)
+        & input,
+        & select
+            font-size: 10px
+            width: 6.2rem
+            margin-right: 1rem
+        & select
+            // width: 3.6rem
+        &__text-box
+            height: 17px
     &:hover
         background-color: $charcoal
     &__text-box
