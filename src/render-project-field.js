@@ -12,16 +12,25 @@ export const RenderProjectField = (() => {
 
   // Initialize PubSubs
   pubsub.subscribe("updateListOfProjects", renderProjectFieldContent);
-  // TO-DO Remove after localStorage implementation
-  pubsub.publish("loadProjectList");
-  // TO-DO Remove after localStorage implementation
 
   function renderProjectFieldContent(projectList) {
     projectField.textContent = "";
+    projectField.appendChild(_makeExpandFieldButton());
     projectList.forEach((project, index) => {
       projectField.appendChild(_makeProjectItem(project, index));
     });
     projectField.appendChild(_makeAddProjectButton());
+
+    function _makeExpandFieldButton() {
+      const button = Render.makeExpandButton();
+      button.classList += ` ${pf("expand-button")}`;
+      button.addEventListener("click", _expandProjectField);
+      return button;
+
+      function _expandProjectField(event) {
+        console.log(event);
+      }
+    }
 
     function _makeProjectItem(project, index) {
       const span = document.createElement("span");
