@@ -353,7 +353,6 @@ export const RenderTaskField = (() => {
         pubsub.publish("taskAddClick", task);
       }
     }
-
     function _makeLabel(elementType) {
       const label = document.createElement("label");
       label.classList = `${tf("label")} ${tf(kebabCase(elementType))}`;
