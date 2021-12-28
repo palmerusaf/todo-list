@@ -1,2 +1,2 @@
 import "./style.sass";
-import "./tests/local-storage-tests";
+import "./tests/render-tests"
