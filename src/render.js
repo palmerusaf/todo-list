@@ -1,3 +1,6 @@
+import { RenderProjectField } from "./render-project-field";
+import { RenderTaskField } from "./render-task-field";
+
 export const Render = (() => {
   // Link stylesheet for icons
   {
@@ -39,11 +42,22 @@ export const Render = (() => {
     return _makeIconButton("arrow_back_ios");
   };
 
+  const makeToDoList = () => {
+    const projectField = RenderProjectField.projectField;
+    const taskField = RenderTaskField.taskField;
+    const contentContainer = document.createElement("div");
+    contentContainer.classList.add("to-do-list");
+    contentContainer.appendChild(projectField);
+    contentContainer.appendChild(taskField);
+    return contentContainer;
+  };
+
   return {
     makeAddButton,
     makeEditButton,
     makeDeleteButton,
     makeCheckButton,
     makeExpandButton,
+    makeToDoList,
   };
 })();
