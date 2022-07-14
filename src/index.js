@@ -1,4 +1,4 @@
-import "./style.sass";
+import "./style.scss";
 import { Render } from "./render";
 import "./project-list-controller";
 import { initializeApp } from "firebase/app";
