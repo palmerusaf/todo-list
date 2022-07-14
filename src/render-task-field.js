@@ -24,48 +24,48 @@ export const RenderTaskField = (() => {
 
     const projectIndex = _getActiveProjectIndex(projectList);
     taskField.dataset.projectIndex = projectIndex;
-    taskField.appendChild(_makeProjectTitle(project));
-    taskField.appendChild(_makeTaskList(project));
-    taskField.appendChild(_makeAddNewTaskButton());
+    taskField.appendChild(_projectTitle(project));
+    taskField.appendChild(_taskList(project));
+    taskField.appendChild(_addNewTaskButton());
     return taskField;
 
-    function _makeProjectTitle(project) {
+    function _projectTitle(project) {
       const title = document.createElement("h1");
       title.classList.add(tf("project-title"));
       title.textContent = `Task List for ${project.title}`;
       return title;
     }
 
-    function _makeTaskList(project) {
+    function _taskList(project) {
       const list = document.createElement("div");
       list.classList.add(tf("task-list"));
       project.taskList.forEach((task, index) =>
-        list.appendChild(_makeTaskItem(task, index))
+        list.appendChild(_taskItem(task, index))
       );
       return list;
 
-      function _makeTaskItem(task, index) {
+      function _taskItem(task, index) {
         const item = document.createElement("span");
         item.classList = tf("task-item", {
           ["mark-done"]: task.taskCompleteStatus,
         });
         item.dataset.taskIndex = index;
         item.dataset.dueDate = task.dueDate;
-        item.appendChild(_makeTaskMainView(task));
-        item.appendChild(_makeTaskExpandedView(task));
+        item.appendChild(_taskMainView(task));
+        item.appendChild(_taskExpandedView(task));
         return item;
       }
 
-      function _makeTaskMainView(task) {
+      function _taskMainView(task) {
         const container = document.createElement("div");
         container.classList = tf("main-view");
         const mainTaskElements = ["title", "due date"];
         _appendTaskElements(container, task, mainTaskElements);
-        container.appendChild(_makeExpandButton());
+        container.appendChild(_expandButton());
         return container;
 
-        function _makeExpandButton() {
-          const button = Render.makeExpandButton();
+        function _expandButton() {
+          const button = Render.expandButton();
           button.classList.add(tf("expand-button"));
           button.addEventListener("click", _expandDetails);
           return button;
@@ -79,14 +79,14 @@ export const RenderTaskField = (() => {
         }
       }
 
-      function _makeTaskExpandedView(task) {
+      function _taskExpandedView(task) {
         const container = document.createElement("div");
         container.classList = tf("expanded-view", { hidden: true });
-        container.appendChild(_makeDetailsField(task));
-        container.appendChild(_makeButtonField());
+        container.appendChild(_detailsField(task));
+        container.appendChild(_buttonField());
         return container;
 
-        function _makeDetailsField(task) {
+        function _detailsField(task) {
           const container = document.createElement("div");
           container.classList.add(tf("details"));
           const taskDetailElements = ["description", "priority"];
@@ -94,22 +94,22 @@ export const RenderTaskField = (() => {
           return container;
         }
 
-        function _makeButtonField() {
+        function _buttonField() {
           const container = document.createElement("div");
           container.classList = tf("button-field");
-          container.appendChild(_makeToggleCompleteTaskButton());
-          container.appendChild(_makeEditTaskButton());
-          container.appendChild(_makeDeleteTaskButton());
+          container.appendChild(_toggleCompleteTaskButton());
+          container.appendChild(_EditTaskButton());
+          container.appendChild(_deleteTaskButton());
           return container;
 
-          function _makeEditTaskButton() {
-            const button = Render.makeEditButton();
+          function _EditTaskButton() {
+            const button = Render.editButton();
             button.addEventListener("click", _replaceTaskItemWithPreFilledForm);
             return button;
 
             function _replaceTaskItemWithPreFilledForm(event) {
               const taskNode = _getTaskNodeFromEvent(event);
-              const preFilledForm = _makePreFilledForm(taskNode);
+              const preFilledForm = _preFilledForm(taskNode);
               const taskList = document.querySelector(`.${tf("task-list")}`);
               taskList.replaceChild(preFilledForm, taskNode);
 
@@ -117,9 +117,9 @@ export const RenderTaskField = (() => {
                 return event.target.parentNode.parentNode.parentNode;
               }
 
-              function _makePreFilledForm(taskNode) {
+              function _preFilledForm(taskNode) {
                 const taskData = _scrapDataFromTaskNode(taskNode);
-                const form = _makeNewTaskEntryForm();
+                const form = _newTaskEntryForm();
                 form[0].value = taskData.title;
                 form[1].valueAsDate = new Date(`${taskData.dueDate}`);
                 form[2].value = taskData.description;
@@ -151,8 +151,8 @@ export const RenderTaskField = (() => {
             }
           }
 
-          function _makeDeleteTaskButton() {
-            const button = Render.makeDeleteButton();
+          function _deleteTaskButton() {
+            const button = Render.deleteButton();
             button.addEventListener("click", _deleteTask);
             return button;
 
@@ -164,8 +164,8 @@ export const RenderTaskField = (() => {
             }
           }
 
-          function _makeToggleCompleteTaskButton() {
-            const button = Render.makeCheckButton();
+          function _toggleCompleteTaskButton() {
+            const button = Render.checkButton();
             button.addEventListener("click", toggleTaskComplete);
             return button;
 
@@ -191,11 +191,11 @@ export const RenderTaskField = (() => {
 
       function _appendTaskElements(container, task, taskElements) {
         taskElements.forEach((taskElement) =>
-          container.appendChild(_makeTaskElement(task, taskElement))
+          container.appendChild(_taskElement(task, taskElement))
         );
 
-        function _makeTaskElement(task, elementType) {
-          const label = _makeLabel(elementType);
+        function _taskElement(task, elementType) {
+          const label = _label(elementType);
           const span = document.createElement("span");
           elementType === "due date"
             ? (span.textContent = _formatDueDate(task[camelCase(elementType)]))
@@ -212,53 +212,53 @@ export const RenderTaskField = (() => {
       }
     }
 
-    function _makeAddNewTaskButton() {
-      const button = Render.makeAddButton();
+    function _addNewTaskButton() {
+      const button = Render.addButton();
       button.classList.add(tf("add-button"));
       button.addEventListener("click", _appendTaskForm, { once: true });
       return button;
     }
 
     function _appendTaskForm(event) {
-      taskField.insertBefore(_makeNewTaskEntryForm(), event.target);
+      taskField.insertBefore(_newTaskEntryForm(), event.target);
     }
 
-    function _makeNewTaskEntryForm() {
-      const form = _makeFormContainer();
+    function _newTaskEntryForm() {
+      const form = _formContainer();
       _appendFormElements();
       return form;
 
-      function _makeFormContainer() {
+      function _formContainer() {
         const form = document.createElement("form");
         form.classList = `${tf("task-item")} ${tForm()}`;
         return form;
       }
 
       function _appendFormElements() {
-        form.appendChild(_makeTopForm());
-        form.appendChild(_makeBottomForm());
-        form.appendChild(_makeSubmitButton());
+        form.appendChild(_topForm());
+        form.appendChild(_BottomForm());
+        form.appendChild(_SubmitButton());
 
-        function _makeTopForm() {
+        function _topForm() {
           const container = document.createElement("div");
           container.classList = tForm("top");
-          container.appendChild(_makeTitleElement());
-          container.appendChild(_makeDueDateElement());
+          container.appendChild(_title());
+          container.appendChild(_dueDate());
           return container;
 
-          function _makeTitleElement() {
-            const label = _makeLabel("title");
-            label.appendChild(_makeTextEntryBox("title"));
+          function _title() {
+            const label = _label("title");
+            label.appendChild(_textEntryBox("title"));
             label.classList += ` ${tForm("title")}`;
             return label;
           }
 
-          function _makeDueDateElement() {
-            const label = _makeLabel("due date");
-            label.appendChild(_makeDateEntryBox());
+          function _dueDate() {
+            const label = _label("due date");
+            label.appendChild(_DateEntryBox());
             return label;
 
-            function _makeDateEntryBox() {
+            function _DateEntryBox() {
               const dateBox = document.createElement("input");
               dateBox.type = "date";
               dateBox.required = "true";
@@ -268,25 +268,25 @@ export const RenderTaskField = (() => {
           }
         }
 
-        function _makeBottomForm() {
+        function _BottomForm() {
           const container = document.createElement("div");
           container.classList = tForm("bottom");
-          container.appendChild(_makeDescriptionElement());
-          container.appendChild(_makePriorityElement());
+          container.appendChild(_DescriptionElement());
+          container.appendChild(_PriorityElement());
           return container;
 
-          function _makeDescriptionElement() {
-            const label = _makeLabel("description");
-            label.appendChild(_makeTextEntryBox("description"));
+          function _DescriptionElement() {
+            const label = _label("description");
+            label.appendChild(_textEntryBox("description"));
             return label;
           }
 
-          function _makePriorityElement() {
-            const label = _makeLabel("priority");
-            label.appendChild(_makePrioritySelector());
+          function _PriorityElement() {
+            const label = _label("priority");
+            label.appendChild(_prioritySelector());
             return label;
 
-            function _makePrioritySelector() {
+            function _prioritySelector() {
               const selector = document.createElement("select");
               selector.classList = tf("selector");
               selector.required = "true";
@@ -300,10 +300,10 @@ export const RenderTaskField = (() => {
               function _appendOptions() {
                 const optionValues = ["High", "Medium", "Low"];
                 optionValues.forEach((optionValue) =>
-                  selector.appendChild(_makeOption(optionValue))
+                  selector.appendChild(_Option(optionValue))
                 );
 
-                function _makeOption(optionValue) {
+                function _Option(optionValue) {
                   const option = document.createElement("option");
                   option.value = optionValue;
                   option.textContent = optionValue;
@@ -314,7 +314,7 @@ export const RenderTaskField = (() => {
           }
         }
 
-        function _makeTextEntryBox(elementType) {
+        function _textEntryBox(elementType) {
           const entryBox = document.createElement("input");
           entryBox.classList = `project-field__text-box ${tForm("text-box")}`;
           entryBox.type = "text";
@@ -324,8 +324,8 @@ export const RenderTaskField = (() => {
           return entryBox;
         }
 
-        function _makeSubmitButton() {
-          const button = Render.makeCheckButton();
+        function _SubmitButton() {
+          const button = Render.checkButton();
           button.classList += ` ${tForm("submit")}`;
           button.addEventListener("click", _submitTaskForm);
           return button;
@@ -353,7 +353,7 @@ export const RenderTaskField = (() => {
         pubsub.publish("taskAddClick", task);
       }
     }
-    function _makeLabel(elementType) {
+    function _label(elementType) {
       const label = document.createElement("label");
       label.classList = `${tf("label")} ${tf(kebabCase(elementType))}`;
       label.textContent = capitalize(elementType) + ": ";

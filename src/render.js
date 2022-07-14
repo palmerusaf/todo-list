@@ -1,4 +1,5 @@
 import { RenderProjectField } from "./render-project-field";
+import bem from "easy-bem";
 import { RenderTaskField } from "./render-task-field";
 
 export const Render = (() => {
@@ -11,7 +12,7 @@ export const Render = (() => {
     document.head.appendChild(googleIconsStyleSheet);
   }
 
-  function _makeIconButton(content) {
+  function _iconButton(content) {
     const button = document.createElement("button");
     button.classList.add(
       "material-icons-outlined",
@@ -22,27 +23,27 @@ export const Render = (() => {
     return button;
   }
 
-  const makeAddButton = () => {
-    return _makeIconButton("add");
+  const addButton = () => {
+    return _iconButton("add");
   };
 
-  const makeEditButton = () => {
-    return _makeIconButton("edit");
+  const editButton = () => {
+    return _iconButton("edit");
   };
 
-  const makeDeleteButton = () => {
-    return _makeIconButton("delete");
+  const deleteButton = () => {
+    return _iconButton("delete");
   };
 
-  const makeCheckButton = () => {
-    return _makeIconButton("check");
+  const checkButton = () => {
+    return _iconButton("check");
   };
 
-  const makeExpandButton = () => {
-    return _makeIconButton("arrow_back_ios");
+  const expandButton = () => {
+    return _iconButton("arrow_back_ios");
   };
 
-  const makeToDoList = () => {
+  const toDoList = () => {
     const projectField = RenderProjectField.projectField;
     const taskField = RenderTaskField.taskField;
     const contentContainer = document.createElement("div");
@@ -52,12 +53,34 @@ export const Render = (() => {
     return contentContainer;
   };
 
+  const footer = () => {
+    const f = bem("footer");
+    const container = document.createElement("footer");
+    container.classList = f();
+
+    const link = document.createElement("a");
+    link.classList = f("link");
+    link.textContent = "GitHub Repo";
+    link.href = "https://github.com/palmerusaf/todo-list";
+    container.appendChild(link);
+
+    const logo = document.createElement("img");
+    logo.classList = f("logo");
+    logo.src =
+      "https://upload.wikimedia.org/wikipedia/commons/9/91/Octicons-mark-github.svg";
+    logo.alt = "git hub logo";
+    container.appendChild(logo);
+
+    return container;
+  };
+
   return {
-    makeAddButton,
-    makeEditButton,
-    makeDeleteButton,
-    makeCheckButton,
-    makeExpandButton,
-    makeToDoList,
+    addButton,
+    editButton,
+    deleteButton,
+    checkButton,
+    expandButton,
+    toDoList,
+    footer,
   };
 })();

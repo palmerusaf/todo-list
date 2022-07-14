@@ -15,14 +15,14 @@ export const RenderProjectField = (() => {
 
   function renderProjectFieldContent(projectList) {
     projectField.textContent = "";
-    projectField.appendChild(_makeExpandFieldButton());
+    projectField.appendChild(_expandFieldButton());
     projectList.forEach((project, index) => {
-      projectField.appendChild(_makeProjectItem(project, index));
+      projectField.appendChild(_projectItem(project, index));
     });
-    projectField.appendChild(_makeAddProjectButton());
+    projectField.appendChild(_addProjectButton());
 
-    function _makeExpandFieldButton() {
-      const button = Render.makeExpandButton();
+    function _expandFieldButton() {
+      const button = Render.expandButton();
       button.classList += ` ${pf("expand-button")}`;
       button.addEventListener("click", _expandProjectField);
       return button;
@@ -34,31 +34,31 @@ export const RenderProjectField = (() => {
       }
     }
 
-    function _makeProjectItem(project, index) {
+    function _projectItem(project, index) {
       const span = document.createElement("span");
       span.classList = pf("item", { active: project.activeStatus });
       span.dataset.projectIndex = index;
       span.addEventListener("click", _setItemActiveOnClick);
-      span.appendChild(_makeProjectTitle(project, index));
-      span.appendChild(_makeButtonField(index));
+      span.appendChild(_projectTitle(project, index));
+      span.appendChild(_buttonField(index));
       return span;
 
-      function _makeProjectTitle(project) {
+      function _projectTitle(project) {
         const span = document.createElement("span");
         span.classList = pf("title");
         span.textContent = project.title;
         return span;
       }
 
-      function _makeButtonField(index) {
+      function _buttonField(index) {
         const span = document.createElement("span");
         span.classList = pf("buttons");
-        span.appendChild(_makeProjectEditButton());
-        span.appendChild(_makeProjectDeleteButton());
+        span.appendChild(_projectEditButton());
+        span.appendChild(_projectDeleteButton());
         return span;
 
-        function _makeProjectDeleteButton() {
-          const button = Render.makeDeleteButton();
+        function _projectDeleteButton() {
+          const button = Render.deleteButton();
           button.addEventListener("click", _deleteProjectOnClick);
           return button;
 
@@ -69,8 +69,8 @@ export const RenderProjectField = (() => {
           }
         }
 
-        function _makeProjectEditButton() {
-          const button = Render.makeEditButton();
+        function _projectEditButton() {
+          const button = Render.editButton();
           button.addEventListener("click", _handleEditButtonClick);
           return button;
 
@@ -87,7 +87,7 @@ export const RenderProjectField = (() => {
                 clickEvent.target.parentNode.parentNode.dataset.projectIndex;
               const projectTitle = _getProjectTitle(projectIndex);
               const projectLabel = _getProjectLabel(projectIndex);
-              const preFilledForm = _makeProjectEntryForm(
+              const preFilledForm = _projectEntryForm(
                 projectTitle,
                 projectIndex
               );
@@ -121,8 +121,8 @@ export const RenderProjectField = (() => {
       }
     }
 
-    function _makeAddProjectButton() {
-      const button = Render.makeAddButton();
+    function _addProjectButton() {
+      const button = Render.addButton();
       button.addEventListener("click", _insertBlankEntryForm);
       const span = document.createElement("span");
       span.classList = pf("item");
@@ -131,33 +131,30 @@ export const RenderProjectField = (() => {
       return span;
 
       function _insertBlankEntryForm() {
-        projectField.insertBefore(_makeProjectEntryForm(), this.parentNode);
+        projectField.insertBefore(_projectEntryForm(), this.parentNode);
       }
     }
 
-    function _makeProjectEntryForm(projectTitle, projectIndex) {
-      const container = _makeEntryContainer(projectIndex);
-      const form = _makeForm(projectTitle);
-      container.appendChild(form);
+    function _projectEntryForm(projectTitle, projectIndex) {
+      const container = _entryContainer(projectIndex);
+      container.appendChild(_form(projectTitle));
       return container;
 
-      function _makeEntryContainer(projectIndex) {
+      function _entryContainer(projectIndex) {
         const span = document.createElement("span");
         span.classList = pf("item");
         span.dataset.projectIndex = projectIndex;
         return span;
       }
 
-      function _makeForm(projectTitle) {
+      function _form(projectTitle) {
         const form = document.createElement("form");
         form.classList = pf("form");
-        const textEntryBox = _makeTextEntryBox(projectTitle);
-        const submitButton = _makeSubmitButton();
-        form.appendChild(textEntryBox);
-        form.appendChild(submitButton);
+        form.appendChild(_textEntryBox(projectTitle));
+        form.appendChild(_submitButton());
         return form;
 
-        function _makeTextEntryBox(projectTitle) {
+        function _textEntryBox(projectTitle) {
           const textEntryBox = document.createElement("input");
           textEntryBox.classList = pf("text-box");
           textEntryBox.placeholder = "Enter project name";
@@ -166,8 +163,8 @@ export const RenderProjectField = (() => {
           return textEntryBox;
         }
 
-        function _makeSubmitButton() {
-          const button = Render.makeCheckButton();
+        function _submitButton() {
+          const button = Render.checkButton();
           button.addEventListener("click", _submitEntryForm);
           return button;
 
