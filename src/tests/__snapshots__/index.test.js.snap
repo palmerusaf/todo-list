@@ -1,0 +1,85 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`todo list and footer renders correctly 1`] = `
+<body>
+  <div
+    class="to-do-list"
+  >
+    <div
+      class="project-field"
+    >
+      <button
+        class="material-icons-outlined button button__arrow_back_ios project-field__expand-button"
+      >
+        arrow_back_ios
+      </button>
+      <span
+        class="project-field__item project-field__item--active"
+        data-project-index="0"
+      >
+        <span
+          class="project-field__title"
+        >
+          My Project
+        </span>
+        <span
+          class="project-field__buttons"
+        >
+          <button
+            class="material-icons-outlined button button__edit"
+          >
+            edit
+          </button>
+          <button
+            class="material-icons-outlined button button__delete"
+          >
+            delete
+          </button>
+        </span>
+      </span>
+      <span
+        class="project-field__item project-field__add"
+      >
+        <button
+          class="material-icons-outlined button button__add"
+        >
+          add
+        </button>
+      </span>
+    </div>
+    <div
+      class="task-field"
+      data-project-index="0"
+    >
+      <h1
+        class="task-field__project-title"
+      >
+        Task List for My Project
+      </h1>
+      <div
+        class="task-field__task-list"
+      />
+      <button
+        class="material-icons-outlined button button__add task-field__add-button"
+      >
+        add
+      </button>
+    </div>
+  </div>
+  <footer
+    class="footer"
+  >
+    <a
+      class="footer__link"
+      href="https://github.com/palmerusaf/todo-list"
+    >
+      GitHub Repo
+    </a>
+    <img
+      alt="git hub logo"
+      class="footer__logo"
+      src="https://upload.wikimedia.org/wikipedia/commons/9/91/Octicons-mark-github.svg"
+    />
+  </footer>
+</body>
+`;
