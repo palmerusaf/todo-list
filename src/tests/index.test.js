@@ -71,20 +71,21 @@ it("New project is deleted correctly", async () => {
   expect(document.body).toMatchSnapshot();
 });
 
-//should be failing
-it.skip("New task is created correctly", async () => {
+it("New task is created correctly", async () => {
   const addButton = document.querySelector(".task-field__add-button");
   await userEvent.click(addButton);
-  const form = document.querySelector(".task-form");
-  const prioritySel = document.querySelector(".task-field__selector");
+
   const title = document.querySelector("input[name='title']");
   const dueDate = document.querySelector("input[name='due-date']");
   const description = document.querySelector("input[name='description']");
+  const prioritySel = document.querySelector(".task-field__selector");
   const submit = document.querySelector(".task-form__submit");
+
   await userEvent.type(title, "Task One Title");
   await userEvent.type(description, "Task One Description");
-  await userEvent.type(dueDate, "11092020");
+  await userEvent.type(dueDate, "2020-11-09");
   await userEvent.selectOptions(prioritySel, "Low");
+
   await userEvent.click(submit);
 
   expect(document.body).toMatchSnapshot();

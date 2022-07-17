@@ -336,10 +336,12 @@ export const RenderTaskField = (() => {
         event.preventDefault();
         const form = event.target.parentNode;
         if (!form.checkValidity()) return;
-        const title = form[0].value;
-        const dueDate = form[1].value;
-        const description = form[2].value;
-        const priority = form[3].value;
+        const title = document.querySelector("input[name='title']").value;
+        const dueDate = document.querySelector("input[name='due-date']").value;
+        const description = document.querySelector(
+          "input[name='description']"
+        ).value;
+        const priority = document.querySelector(".task-field__selector").value;
         const projectIndex = taskField.dataset.projectIndex;
         const taskIndex = form.dataset.taskIndex;
         const task = {

@@ -461,88 +461,82 @@ exports[`New task is created correctly 1`] = `
       </h1>
       <div
         class="task-field__task-list"
-      />
-      <form
-        class="task-field__task-item task-form"
       >
-        <div
-          class="task-form__top"
+        <span
+          class="task-field__task-item"
+          data-due-date="2020-11-09"
+          data-task-index="0"
         >
-          <label
-            class="task-field__label task-field__title task-form__title"
+          <div
+            class="task-field__main-view"
           >
-            Title: 
-            <input
-              class="project-field__text-box task-form__text-box"
-              name="title"
-              placeholder="Enter task title"
-              required=""
-              type="text"
-            />
-          </label>
-          <label
-            class="task-field__label task-field__due-date"
-          >
-            Due date: 
-            <input
-              name="due-date"
-              required=""
-              type="date"
-            />
-          </label>
-        </div>
-        <div
-          class="task-form__bottom"
-        >
-          <label
-            class="task-field__label task-field__description"
-          >
-            Description: 
-            <input
-              class="project-field__text-box task-form__text-box"
-              name="description"
-              placeholder="Enter task description"
-              required=""
-              type="text"
-            />
-          </label>
-          <label
-            class="task-field__label task-field__priority"
-          >
-            Priority: 
-            <select
-              class="task-field__selector"
-              required=""
+            <label
+              class="task-field__label task-field__title"
             >
-              <option
-                value=""
+              Title: 
+              <span>
+                Task One Title
+              </span>
+            </label>
+            <label
+              class="task-field__label task-field__due-date"
+            >
+              Due date: 
+              <span>
+                over 1 year ago
+              </span>
+            </label>
+            <button
+              class="material-icons-outlined button button__arrow_back_ios task-field__expand-button"
+            >
+              arrow_back_ios
+            </button>
+          </div>
+          <div
+            class="task-field__expanded-view task-field__expanded-view--hidden"
+          >
+            <div
+              class="task-field__details"
+            >
+              <label
+                class="task-field__label task-field__description"
               >
-                Level
-              </option>
-              <option
-                value="High"
+                Description: 
+                <span>
+                  Task One Description
+                </span>
+              </label>
+              <label
+                class="task-field__label task-field__priority"
               >
-                High
-              </option>
-              <option
-                value="Medium"
+                Priority: 
+                <span>
+                  Low
+                </span>
+              </label>
+            </div>
+            <div
+              class="task-field__button-field"
+            >
+              <button
+                class="material-icons-outlined button button__check"
               >
-                Medium
-              </option>
-              <option
-                value="Low"
+                check
+              </button>
+              <button
+                class="material-icons-outlined button button__edit"
               >
-                Low
-              </option>
-            </select>
-          </label>
-        </div>
-        <button
-          class="material-icons-outlined button button__check task-form__submit"
-        >
-          check
-        </button>
-      </form>
+                edit
+              </button>
+              <button
+                class="material-icons-outlined button button__delete"
+              >
+                delete
+              </button>
+            </div>
+          </div>
+        </span>
+      </div>
       <button
         class="material-icons-outlined button button__add task-field__add-button"
       >
