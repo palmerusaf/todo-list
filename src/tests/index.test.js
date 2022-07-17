@@ -91,6 +91,12 @@ it("New task is created correctly", async () => {
   expect(document.body).toMatchSnapshot();
 });
 
-it.todo("New task is updated correctly");
+it("New task is updated correctly", async () => {
+  const editButton = document.querySelector(
+    ".task-field__button-field > .button__edit"
+  );
+  await userEvent.click(editButton);
+  expect(document.body).toMatchSnapshot();
+});
 
 it.todo("New task is deleted correctly");

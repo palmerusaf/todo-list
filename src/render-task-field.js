@@ -120,6 +120,7 @@ export const RenderTaskField = (() => {
               function _makePreFilledForm(taskNode) {
                 const taskData = _scrapDataFromTaskNode(taskNode);
                 const form = _makeNewTaskEntryForm();
+                console.log('form :>> ', form);
                 form[0].value = taskData.title;
                 form[1].valueAsDate = new Date(`${taskData.dueDate}`);
                 form[2].value = taskData.description;
@@ -336,12 +337,12 @@ export const RenderTaskField = (() => {
         event.preventDefault();
         const form = event.target.parentNode;
         if (!form.checkValidity()) return;
-        const title = document.querySelector("input[name='title']").value;
-        const dueDate = document.querySelector("input[name='due-date']").value;
-        const description = document.querySelector(
+        const title = form.querySelector("input[name='title']").value;
+        const dueDate = form.querySelector("input[name='due-date']").value;
+        const description = form.querySelector(
           "input[name='description']"
         ).value;
-        const priority = document.querySelector(".task-field__selector").value;
+        const priority = form.querySelector(".task-field__selector").value;
         const projectIndex = taskField.dataset.projectIndex;
         const taskIndex = form.dataset.taskIndex;
         const task = {

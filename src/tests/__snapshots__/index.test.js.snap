@@ -562,6 +562,165 @@ exports[`New task is created correctly 1`] = `
 </body>
 `;
 
+exports[`New task is updated correctly 1`] = `
+<body>
+  <div
+    class="to-do-list"
+  >
+    <div
+      class="project-field"
+    >
+      <button
+        class="material-icons-outlined button button__arrow_back_ios project-field__expand-button"
+      >
+        arrow_back_ios
+      </button>
+      <span
+        class="project-field__item project-field__item--active"
+        data-project-index="0"
+      >
+        <span
+          class="project-field__title"
+        >
+          My Project
+        </span>
+        <span
+          class="project-field__buttons"
+        >
+          <button
+            class="material-icons-outlined button button__edit"
+          >
+            edit
+          </button>
+          <button
+            class="material-icons-outlined button button__delete"
+          >
+            delete
+          </button>
+        </span>
+      </span>
+      <span
+        class="project-field__item project-field__add"
+      >
+        <button
+          class="material-icons-outlined button button__add"
+        >
+          add
+        </button>
+      </span>
+    </div>
+    <div
+      class="task-field"
+      data-project-index="0"
+    >
+      <h1
+        class="task-field__project-title"
+      >
+        Task List for My Project
+      </h1>
+      <div
+        class="task-field__task-list"
+      >
+        <span
+          class="task-field__task-item"
+          data-due-date="2020-11-09"
+          data-task-index="0"
+        >
+          <div
+            class="task-field__main-view"
+          >
+            <label
+              class="task-field__label task-field__title"
+            >
+              Title: 
+              <span>
+                Task One Title
+              </span>
+            </label>
+            <label
+              class="task-field__label task-field__due-date"
+            >
+              Due date: 
+              <span>
+                over 1 year ago
+              </span>
+            </label>
+            <button
+              class="material-icons-outlined button button__arrow_back_ios task-field__expand-button"
+            >
+              arrow_back_ios
+            </button>
+          </div>
+          <div
+            class="task-field__expanded-view task-field__expanded-view--hidden"
+          >
+            <div
+              class="task-field__details"
+            >
+              <label
+                class="task-field__label task-field__description"
+              >
+                Description: 
+                <span>
+                  Task One Description
+                </span>
+              </label>
+              <label
+                class="task-field__label task-field__priority"
+              >
+                Priority: 
+                <span>
+                  Low
+                </span>
+              </label>
+            </div>
+            <div
+              class="task-field__button-field"
+            >
+              <button
+                class="material-icons-outlined button button__check"
+              >
+                check
+              </button>
+              <button
+                class="material-icons-outlined button button__edit"
+              >
+                edit
+              </button>
+              <button
+                class="material-icons-outlined button button__delete"
+              >
+                delete
+              </button>
+            </div>
+          </div>
+        </span>
+      </div>
+      <button
+        class="material-icons-outlined button button__add task-field__add-button"
+      >
+        add
+      </button>
+    </div>
+  </div>
+  <footer
+    class="footer"
+  >
+    <a
+      class="footer__link"
+      href="https://github.com/palmerusaf/todo-list"
+    >
+      GitHub Repo
+    </a>
+    <img
+      alt="git hub logo"
+      class="footer__logo"
+      src="https://upload.wikimedia.org/wikipedia/commons/9/91/Octicons-mark-github.svg"
+    />
+  </footer>
+</body>
+`;
+
 exports[`Project is selected correctly 1`] = `
 <body>
   <div
