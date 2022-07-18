@@ -173,7 +173,7 @@ export const RenderProjectField = (() => {
 
           function _submitEntryForm(event) {
             event.preventDefault();
-            const title = event.target.parentNode[0].value;
+            const title = event.target.parentNode.querySelector("input").value;
             if (title === "") return;
             const projectIndex =
               this.parentNode.parentNode.dataset.projectIndex;
