@@ -4,10 +4,16 @@ import "./project-list-controller";
 import bem from "easy-bem";
 
 (() => {
-  const body = document.body;
+  const noScript = document.createElement("noscript");
+  noScript.textContent = "You need to enable JavaScript to run this app.";
+  document.body.appendChild(noScript);
 
-  body.appendChild(Render.makeToDoList());
-  body.appendChild(_makeFooter());
+  const root = document.createElement("div");
+  root.id = "root";
+  document.body.appendChild(root);
+
+  root.appendChild(Render.makeToDoList());
+  root.appendChild(_makeFooter());
 
   function _makeFooter() {
     const f = bem("footer");
