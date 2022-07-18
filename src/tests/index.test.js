@@ -88,6 +88,7 @@ it("New task is created correctly", async () => {
 
   await userEvent.click(submit);
 
+  setDateToConstant();
   expect(document.body).toMatchSnapshot();
 });
 
@@ -96,7 +97,37 @@ it("New task is updated correctly", async () => {
     ".task-field__button-field > .button__edit"
   );
   await userEvent.click(editButton);
+
+  const title = document.querySelector("input[name='title']");
+  const dueDate = document.querySelector("input[name='due-date']");
+  const description = document.querySelector("input[name='description']");
+  const prioritySel = document.querySelector(".task-field__selector");
+  const submit = document.querySelector(".task-form__submit");
+
+  await userEvent.clear(title);
+  await userEvent.type(title, "Task One Title Changed");
+  await userEvent.clear(description);
+  await userEvent.type(description, "Task One Description Changed");
+  await userEvent.clear(dueDate);
+  await userEvent.type(dueDate, "1993-01-19");
+  await userEvent.selectOptions(prioritySel, "High");
+
+  await userEvent.click(submit);
+
+  setDateToConstant();
   expect(document.body).toMatchSnapshot();
 });
 
-it.todo("New task is deleted correctly");
+it("New task is deleted correctly",async () => {
+  const deleteButton = document.querySelector(
+    ".task-field__button-field > .button__delete"
+  );
+  await userEvent.click(deleteButton);
+  expect(document.body).toMatchSnapshot();
+});
+
+function setDateToConstant() {
+  const date = document.querySelector(".task-field__due-date > span");
+  date.textContent = "CONSTANT_DATE_FOR_SNAPSHOT";
+}
+
