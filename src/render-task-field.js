@@ -3,6 +3,7 @@ import { pubsub } from "./pubsub.js";
 import bem from "easy-bem";
 import { formatDistanceToNow } from "date-fns";
 import { kebabCase, capitalize, camelCase } from "lodash";
+import IconButton from "./components/icon-button";
 
 export const RenderTaskField = (() => {
   // for bem class names
@@ -65,7 +66,7 @@ export const RenderTaskField = (() => {
         return container;
 
         function _makeExpandButton() {
-          const button = Render.makeExpandButton();
+          const button = IconButton({ type: "arrow_back_ios" });
           button.classList.add(tf("expand-button"));
           button.addEventListener("click", _expandDetails);
           return button;
@@ -103,7 +104,7 @@ export const RenderTaskField = (() => {
           return container;
 
           function _makeEditTaskButton() {
-            const button = Render.makeEditButton();
+            const button = IconButton({ type: "edit" });
             button.addEventListener("click", _replaceTaskItemWithPreFilledForm);
             return button;
 
@@ -129,7 +130,7 @@ export const RenderTaskField = (() => {
                 const priority = form.querySelector(".task-field__selector");
 
                 title.value = taskData.title;
-                dueDate.valueAsDat
+                dueDate.valueAsDat;
                 description.value = taskData.description;
                 priority.value = taskData.priority;
                 form.dataset.taskIndex = taskData.taskIndex;
@@ -160,7 +161,7 @@ export const RenderTaskField = (() => {
           }
 
           function _makeDeleteTaskButton() {
-            const button = Render.makeDeleteButton();
+            const button = IconButton({ type: "delete" });
             button.addEventListener("click", _deleteTask);
             return button;
 
@@ -173,7 +174,7 @@ export const RenderTaskField = (() => {
           }
 
           function _makeToggleCompleteTaskButton() {
-            const button = Render.makeCheckButton();
+            const button = IconButton({ type: "check" });
             button.addEventListener("click", toggleTaskComplete);
             return button;
 
@@ -221,7 +222,7 @@ export const RenderTaskField = (() => {
     }
 
     function _makeAddNewTaskButton() {
-      const button = Render.makeAddButton();
+      const button = IconButton({ type: "add" });
       button.classList.add(tf("add-button"));
       button.addEventListener("click", _appendTaskForm, { once: true });
       return button;
@@ -333,7 +334,7 @@ export const RenderTaskField = (() => {
         }
 
         function _makeSubmitButton() {
-          const button = Render.makeCheckButton();
+          const button = IconButton({ type: "check" });
           button.classList += ` ${tForm("submit")}`;
           button.addEventListener("click", _submitTaskForm);
           return button;

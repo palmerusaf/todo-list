@@ -6,8 +6,8 @@ import { pubsub } from "../pubsub";
 // Common buttons render test
 // document.body.appendChild(Render.makeAddButton());
 // document.body.appendChild(Render.makeEditButton());
-// document.body.appendChild(Render.makeDeleteButton());
-// document.body.appendChild(Render.makeCheckButton());
+// document.body.appendChild(IconButton({ type: "delete" }));
+// document.body.appendChild(IconButton({ type: "check" }));
 
 // Test Exports
 pubsub.publish("loadProjectList", projectListPrototype);

@@ -1,6 +1,7 @@
 import { Render } from "./render.js";
 import { pubsub } from "./pubsub.js";
 import bem from "easy-bem";
+import IconButton from "./components/icon-button";
 
 export const RenderProjectField = (() => {
   // for bem class names
@@ -22,7 +23,7 @@ export const RenderProjectField = (() => {
     projectField.appendChild(_makeAddProjectButton());
 
     function _makeExpandFieldButton() {
-      const button = Render.makeExpandButton();
+      const button = IconButton({ type: "arrow_back_ios" });
       button.classList += ` ${pf("expand-button")}`;
       button.addEventListener("click", _expandProjectField);
       return button;
@@ -58,7 +59,7 @@ export const RenderProjectField = (() => {
         return span;
 
         function _makeProjectDeleteButton() {
-          const button = Render.makeDeleteButton();
+          const button = IconButton({ type: "delete" });
           button.addEventListener("click", _deleteProjectOnClick);
           return button;
 
@@ -70,7 +71,7 @@ export const RenderProjectField = (() => {
         }
 
         function _makeProjectEditButton() {
-          const button = Render.makeEditButton();
+          const button = IconButton({ type: "edit" });
           button.addEventListener("click", _handleEditButtonClick);
           return button;
 
@@ -122,7 +123,7 @@ export const RenderProjectField = (() => {
     }
 
     function _makeAddProjectButton() {
-      const button = Render.makeAddButton();
+      const button = IconButton({ type: "add" });
       button.addEventListener("click", _insertBlankEntryForm);
       const span = document.createElement("span");
       span.classList = pf("item");
@@ -167,7 +168,7 @@ export const RenderProjectField = (() => {
         }
 
         function _makeSubmitButton() {
-          const button = Render.makeCheckButton();
+          const button = IconButton({ type: "check" });
           button.addEventListener("click", _submitEntryForm);
           return button;
 
