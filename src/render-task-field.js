@@ -1,4 +1,3 @@
-import { Render } from "./render.js";
 import { pubsub } from "./pubsub.js";
 import bem from "easy-bem";
 import { formatDistanceToNow } from "date-fns";

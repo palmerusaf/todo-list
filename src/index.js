@@ -1,7 +1,6 @@
 import "./style.sass";
-import { Render } from "./render";
-import "./project-list-controller";
-import Footer from './components/footer.js';
+import TodoList from "./components/todo-list";
+import Footer from "./components/footer.js";
 
 (() => {
   const noScript = document.createElement("noscript");
@@ -12,7 +11,6 @@ import Footer from './components/footer.js';
   root.id = "root";
   document.body.appendChild(root);
 
-  root.appendChild(Render.makeToDoList());
+  root.appendChild(TodoList());
   root.appendChild(Footer());
-
 })();
