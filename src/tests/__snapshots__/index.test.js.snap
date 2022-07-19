@@ -403,6 +403,171 @@ exports[`New project is updated correctly 1`] = `
 </body>
 `;
 
+exports[`New task form is created correctly 1`] = `
+<body>
+  <div
+    class="to-do-list"
+  >
+    <div
+      class="project-field"
+    >
+      <button
+        class="material-icons-outlined button button__arrow_back_ios project-field__expand-button"
+      >
+        arrow_back_ios
+      </button>
+      <span
+        class="project-field__item project-field__item--active"
+        data-project-index="0"
+      >
+        <span
+          class="project-field__title"
+        >
+          My Project
+        </span>
+        <span
+          class="project-field__buttons"
+        >
+          <button
+            class="material-icons-outlined button button__edit"
+          >
+            edit
+          </button>
+          <button
+            class="material-icons-outlined button button__delete"
+          >
+            delete
+          </button>
+        </span>
+      </span>
+      <span
+        class="project-field__item project-field__add"
+      >
+        <button
+          class="material-icons-outlined button button__add"
+        >
+          add
+        </button>
+      </span>
+    </div>
+    <div
+      class="task-field"
+      data-project-index="0"
+    >
+      <h1
+        class="task-field__project-title"
+      >
+        Task List for My Project
+      </h1>
+      <div
+        class="task-field__task-list"
+      />
+      <form
+        class="task-field__task-item task-form"
+      >
+        <div
+          class="task-form__top"
+        >
+          <label
+            class="task-field__label task-field__title task-form__title"
+          >
+            Title: 
+            <input
+              class="project-field__text-box task-form__text-box"
+              name="title"
+              placeholder="Enter task title"
+              required=""
+              type="text"
+            />
+          </label>
+          <label
+            class="task-field__label task-field__due-date"
+          >
+            Due date: 
+            <input
+              name="due-date"
+              required=""
+              type="date"
+            />
+          </label>
+        </div>
+        <div
+          class="task-form__bottom"
+        >
+          <label
+            class="task-field__label task-field__description"
+          >
+            Description: 
+            <input
+              class="project-field__text-box task-form__text-box"
+              name="description"
+              placeholder="Enter task description"
+              required=""
+              type="text"
+            />
+          </label>
+          <label
+            class="task-field__label task-field__priority"
+          >
+            Priority: 
+            <select
+              class="task-field__selector"
+              required=""
+            >
+              <option
+                value=""
+              >
+                Level
+              </option>
+              <option
+                value="High"
+              >
+                High
+              </option>
+              <option
+                value="Medium"
+              >
+                Medium
+              </option>
+              <option
+                value="Low"
+              >
+                Low
+              </option>
+            </select>
+          </label>
+        </div>
+        <button
+          class="material-icons-outlined button button__check task-form__submit"
+        >
+          check
+        </button>
+      </form>
+      <button
+        class="material-icons-outlined button button__add task-field__add-button"
+      >
+        add
+      </button>
+    </div>
+  </div>
+  <footer
+    class="footer"
+  >
+    <a
+      class="footer__link"
+      href="https://github.com/palmerusaf/todo-list"
+    >
+      GitHub Repo
+    </a>
+    <img
+      alt="git hub logo"
+      class="footer__logo"
+      src="https://upload.wikimedia.org/wikipedia/commons/9/91/Octicons-mark-github.svg"
+    />
+  </footer>
+</body>
+`;
+
 exports[`New task is created correctly 1`] = `
 <body>
   <div
@@ -779,6 +944,276 @@ exports[`New task is updated correctly 1`] = `
             </div>
           </div>
         </span>
+      </div>
+      <button
+        class="material-icons-outlined button button__add task-field__add-button"
+      >
+        add
+      </button>
+    </div>
+  </div>
+  <footer
+    class="footer"
+  >
+    <a
+      class="footer__link"
+      href="https://github.com/palmerusaf/todo-list"
+    >
+      GitHub Repo
+    </a>
+    <img
+      alt="git hub logo"
+      class="footer__logo"
+      src="https://upload.wikimedia.org/wikipedia/commons/9/91/Octicons-mark-github.svg"
+    />
+  </footer>
+</body>
+`;
+
+exports[`Pre-filled project form rendered correctly 1`] = `
+<body>
+  <div
+    class="to-do-list"
+  >
+    <div
+      class="project-field"
+    >
+      <button
+        class="material-icons-outlined button button__arrow_back_ios project-field__expand-button"
+      >
+        arrow_back_ios
+      </button>
+      <span
+        class="project-field__item"
+        data-project-index="0"
+      >
+        <span
+          class="project-field__title"
+        >
+          My Project
+        </span>
+        <span
+          class="project-field__buttons"
+        >
+          <button
+            class="material-icons-outlined button button__edit"
+          >
+            edit
+          </button>
+          <button
+            class="material-icons-outlined button button__delete"
+          >
+            delete
+          </button>
+        </span>
+      </span>
+      <span
+        class="project-field__item"
+        data-project-index="1"
+      >
+        <form
+          class="project-field__form"
+        >
+          <input
+            class="project-field__text-box"
+            placeholder="Enter project name"
+            required=""
+          />
+          <button
+            class="material-icons-outlined button button__check"
+          >
+            check
+          </button>
+        </form>
+      </span>
+      <span
+        class="project-field__item project-field__add"
+      >
+        <button
+          class="material-icons-outlined button button__add"
+        >
+          add
+        </button>
+      </span>
+    </div>
+    <div
+      class="task-field"
+      data-project-index="1"
+    >
+      <h1
+        class="task-field__project-title"
+      >
+        Task List for Project one
+      </h1>
+      <div
+        class="task-field__task-list"
+      />
+      <button
+        class="material-icons-outlined button button__add task-field__add-button"
+      >
+        add
+      </button>
+    </div>
+  </div>
+  <footer
+    class="footer"
+  >
+    <a
+      class="footer__link"
+      href="https://github.com/palmerusaf/todo-list"
+    >
+      GitHub Repo
+    </a>
+    <img
+      alt="git hub logo"
+      class="footer__logo"
+      src="https://upload.wikimedia.org/wikipedia/commons/9/91/Octicons-mark-github.svg"
+    />
+  </footer>
+</body>
+`;
+
+exports[`Pre-filled task form rendered correctly 1`] = `
+<body>
+  <div
+    class="to-do-list"
+  >
+    <div
+      class="project-field"
+    >
+      <button
+        class="material-icons-outlined button button__arrow_back_ios project-field__expand-button"
+      >
+        arrow_back_ios
+      </button>
+      <span
+        class="project-field__item project-field__item--active"
+        data-project-index="0"
+      >
+        <span
+          class="project-field__title"
+        >
+          My Project
+        </span>
+        <span
+          class="project-field__buttons"
+        >
+          <button
+            class="material-icons-outlined button button__edit"
+          >
+            edit
+          </button>
+          <button
+            class="material-icons-outlined button button__delete"
+          >
+            delete
+          </button>
+        </span>
+      </span>
+      <span
+        class="project-field__item project-field__add"
+      >
+        <button
+          class="material-icons-outlined button button__add"
+        >
+          add
+        </button>
+      </span>
+    </div>
+    <div
+      class="task-field"
+      data-project-index="0"
+    >
+      <h1
+        class="task-field__project-title"
+      >
+        Task List for My Project
+      </h1>
+      <div
+        class="task-field__task-list"
+      >
+        <form
+          class="task-field__task-item task-form"
+          data-task-index="0"
+        >
+          <div
+            class="task-form__top"
+          >
+            <label
+              class="task-field__label task-field__title task-form__title"
+            >
+              Title: 
+              <input
+                class="project-field__text-box task-form__text-box"
+                name="title"
+                placeholder="Enter task title"
+                required=""
+                type="text"
+              />
+            </label>
+            <label
+              class="task-field__label task-field__due-date"
+            >
+              Due date: 
+              <input
+                name="due-date"
+                required=""
+                type="date"
+              />
+            </label>
+          </div>
+          <div
+            class="task-form__bottom"
+          >
+            <label
+              class="task-field__label task-field__description"
+            >
+              Description: 
+              <input
+                class="project-field__text-box task-form__text-box"
+                name="description"
+                placeholder="Enter task description"
+                required=""
+                type="text"
+              />
+            </label>
+            <label
+              class="task-field__label task-field__priority"
+            >
+              Priority: 
+              <select
+                class="task-field__selector"
+                required=""
+              >
+                <option
+                  value=""
+                >
+                  Level
+                </option>
+                <option
+                  value="High"
+                >
+                  High
+                </option>
+                <option
+                  value="Medium"
+                >
+                  Medium
+                </option>
+                <option
+                  value="Low"
+                >
+                  Low
+                </option>
+              </select>
+            </label>
+          </div>
+          <button
+            class="material-icons-outlined button button__check task-form__submit"
+          >
+            check
+          </button>
+        </form>
       </div>
       <button
         class="material-icons-outlined button button__add task-field__add-button"

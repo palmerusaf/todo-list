@@ -46,11 +46,15 @@ it("Project is selected correctly", async () => {
   expect(document.body).toMatchSnapshot();
 });
 
-it("New project is updated correctly", async () => {
+it("Pre-filled project form rendered correctly", async () => {
   const projects = document.querySelectorAll(".project-field__item");
   const editButton = projects[1].querySelector(".button__edit");
   await userEvent.click(editButton);
 
+  expect(document.body).toMatchSnapshot();
+});
+
+it("New project is updated correctly", async () => {
   const form = document.querySelector(".project-field__form");
   const input = form.querySelector("input");
   await userEvent.clear(input);
@@ -71,10 +75,14 @@ it("New project is deleted correctly", async () => {
   expect(document.body).toMatchSnapshot();
 });
 
-it("New task is created correctly", async () => {
+it("New task form is created correctly", async () => {
   const addButton = document.querySelector(".task-field__add-button");
   await userEvent.click(addButton);
 
+  expect(document.body).toMatchSnapshot();
+});
+
+it("New task is created correctly", async () => {
   const title = document.querySelector("input[name='title']");
   const dueDate = document.querySelector("input[name='due-date']");
   const description = document.querySelector("input[name='description']");
@@ -92,12 +100,16 @@ it("New task is created correctly", async () => {
   expect(document.body).toMatchSnapshot();
 });
 
-it("New task is updated correctly", async () => {
+it('Pre-filled task form rendered correctly',async () => {
   const editButton = document.querySelector(
     ".task-field__button-field > .button__edit"
   );
   await userEvent.click(editButton);
+  
+  expect(document.body).toMatchSnapshot();
+});
 
+it("New task is updated correctly", async () => {
   const title = document.querySelector("input[name='title']");
   const dueDate = document.querySelector("input[name='due-date']");
   const description = document.querySelector("input[name='description']");
@@ -118,7 +130,7 @@ it("New task is updated correctly", async () => {
   expect(document.body).toMatchSnapshot();
 });
 
-it("New task is deleted correctly",async () => {
+it("New task is deleted correctly", async () => {
   const deleteButton = document.querySelector(
     ".task-field__button-field > .button__delete"
   );
@@ -130,4 +142,3 @@ function setDateToConstant() {
   const date = document.querySelector(".task-field__due-date > span");
   date.textContent = "CONSTANT_DATE_FOR_SNAPSHOT";
 }
-
