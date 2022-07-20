@@ -1,5 +1,4 @@
 import { pubsub } from "./pubsub.js";
-import { taskBuilder } from "./task-builder.js";
 import "./local-storage";
 
 export const projectsController = (function () {
@@ -70,12 +69,8 @@ export const projectsController = (function () {
     }
 
     function createTask(e) {
-      const title = e.title;
-      const description = e.description;
-      const dueDate = e.dueDate;
-      const priority = e.priority;
-      const isDone = false;
-      return taskBuilder(title, description, dueDate, priority, isDone);
+      const { title, description, dueDate, priority } = e;
+      return { title, description, dueDate, priority, isDone: false };
     }
   }
 
