@@ -25,13 +25,8 @@ export const projectsController = (function () {
   }
 
   function deleteTask(e) {
-    const pI = e.projectIndex;
-    const tI = e.taskIndex;
-    projects[pI].tasks[tI]
-      ? projects[pI].tasks.splice(tI, 1)
-      : console.warn(
-          `Project index ${pI},task index ${tI} not found to delete.`
-        );
+    const { projectIndex, taskIndex } = e;
+    projects[projectIndex].tasks.splice(taskIndex, 1);
     pubsub.publish("updateListOfProjects", projects);
   }
 
