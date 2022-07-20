@@ -9,7 +9,7 @@ export const projectsController = (function () {
   pubsub.subscribe("taskAddClick", addTask);
   pubsub.subscribe("projectAddClick", addProject);
   pubsub.subscribe("projectSetActiveClick", setActiveProject);
-  pubsub.subscribe("toggleTaskCompleteClick", toggleTaskComplete);
+  pubsub.subscribe("toggleTaskCompleteClick", toggleTaskIsDone);
   pubsub.publish("requestDataFromLocalStorage");
 
   function initProjects(storedProjects) {
@@ -63,7 +63,7 @@ export const projectsController = (function () {
 
     function projectExists() {
       if (projectIndex !== undefined) return projectIndex < projects.length;
-      return projectIndex ;
+      return projectIndex;
     }
 
     function updateTitle() {
@@ -76,30 +76,22 @@ export const projectsController = (function () {
   }
 
   function setActiveProject(e) {
-    const pI = e.projectIndex;
-    if (projects[pI] === undefined) {
-      console.error("Project Index undefined.");
-      return;
-    }
-    setAllProjectsToInActive();
-    setProjectIndexToActive(pI);
+    const { projectIndex } = e;
+
+    setAllInActive();
+    projects[projectIndex].isActive = true;
+
     pubsub.publish("updateListOfProjects", projects);
 
-    function setAllProjectsToInActive() {
+    function setAllInActive() {
       projects.forEach((project) => (project.isActive = false));
-    }
-
-    function setProjectIndexToActive(index) {
-      projects[index].isActive = true;
     }
   }
 
-  function toggleTaskComplete(e) {
-    const pI = e.projectIndex;
-    const tI = e.taskIndex;
-    projects[pI].tasks[tI].isDone
-      ? (projects[pI].tasks[tI].isDone = false)
-      : (projects[pI].tasks[tI].isDone = true);
+  function toggleTaskIsDone(e) {
+    const { projectIndex, taskIndex } = e;
+    const task = projects[projectIndex].tasks[taskIndex];
+    task.isDone = !task.isDone;
     pubsub.publish("updateListOfProjects", projects);
   }
 })();
