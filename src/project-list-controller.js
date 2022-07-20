@@ -3,7 +3,7 @@ import "./local-storage";
 
 export const projectsController = (function () {
   let projects = [];
-  pubsub.subscribe("loadprojects", initprojects);
+  pubsub.subscribe("loadprojects", initProjects);
   pubsub.subscribe("projectDeleteClick", deleteProject);
   pubsub.subscribe("taskDeleteClick", deleteTask);
   pubsub.subscribe("taskAddClick", addTask);
@@ -12,17 +12,11 @@ export const projectsController = (function () {
   pubsub.subscribe("toggleTaskCompleteClick", toggleTaskComplete);
   pubsub.publish("requestDataFromLocalStorage");
 
-  function initprojects(storedList) {
-    projects = storedList || buildDefaultList();
-    if (projects.length === 0) projects = buildDefaultList();
+  function initProjects(storedProjects) {
+    const defaultList = [{ title: "My Project", tasks: [], isActive: true }];
+    projects =
+      !storedProjects || storedProjects.length ? defaultList : storedProjects;
     pubsub.publish("updateListOfProjects", projects);
-  }
-
-  function buildDefaultList() {
-    let list = [];
-    const defaultProject = { title: "My Project", tasks: [], isActive: true };
-    list.push(defaultProject);
-    return list;
   }
 
   function deleteProject(e) {
