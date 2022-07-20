@@ -20,10 +20,7 @@ export const projectsController = (function () {
   }
 
   function deleteProject(e) {
-    const index = e.projectIndex;
-    projects[index]
-      ? projects.splice(index, 1)
-      : console.warn(`Project index ${index} not found to delete.`);
+    projects.splice(e.projectIndex, 1);
     pubsub.publish("updateListOfProjects", projects);
   }
 
