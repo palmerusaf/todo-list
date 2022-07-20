@@ -56,24 +56,21 @@ export const projectsController = (function () {
   }
 
   function addProject(e) {
-    if (projectAlreadyExists(e)) changeProjectTitle(e);
-    else appendProject(e);
+    const { projectIndex, title } = e;
+    if (projectExists()) updateTitle();
+    else appendProject();
     pubsub.publish("updateListOfProjects", projects);
 
-    function projectAlreadyExists(e) {
-      const pI = e.projectIndex;
-      if (pI !== undefined) return pI < projects.length;
-      return pI;
+    function projectExists() {
+      if (projectIndex !== undefined) return projectIndex < projects.length;
+      return projectIndex ;
     }
 
-    function changeProjectTitle(e) {
-      const pI = e.projectIndex;
-      const newTitle = e.title;
-      projects[pI].title = newTitle;
+    function updateTitle() {
+      projects[projectIndex].title = title;
     }
 
-    function appendProject(e) {
-      const title = e.title;
+    function appendProject() {
       projects.push({ title, tasks: [], isActive: false });
     }
   }
