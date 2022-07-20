@@ -31,30 +31,25 @@ export const projectsController = (function () {
   }
 
   function addTask(e) {
-    if (taskAlreadyExists(e)) replaceOldTaskWithNewTask(e);
-    else appendListWithNewTask(e);
+    const { taskIndex, projectIndex } = e;
+    const taskExists = taskIndex || taskIndex == 0;
+    const newTask = createTaskFrom(e);
+    if (taskExists) {
+      updateTask();
+    } else {
+      appendTask();
+    }
     pubsub.publish("updateListOfProjects", projects);
 
-    function taskAlreadyExists(e) {
-      const pI = e.projectIndex;
-      const taskIndex = e.taskIndex;
-      const tasksLength = projects[pI].tasks.length;
-      if (taskIndex !== undefined) return taskIndex < tasksLength;
-      return taskIndex;
+    function appendTask() {
+      projects[projectIndex].tasks.push(newTask);
     }
 
-    function appendListWithNewTask(e) {
-      const pI = e.projectIndex;
-      projects[pI].tasks.push(createTask(e));
+    function updateTask() {
+      projects[projectIndex].tasks[taskIndex] = newTask;
     }
 
-    function replaceOldTaskWithNewTask(e) {
-      const pI = e.projectIndex;
-      const tI = e.taskIndex;
-      projects[pI].tasks[tI] = createTask(e);
-    }
-
-    function createTask(e) {
+    function createTaskFrom(e) {
       const { title, description, dueDate, priority } = e;
       return { title, description, dueDate, priority, isDone: false };
     }
