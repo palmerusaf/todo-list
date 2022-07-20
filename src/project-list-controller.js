@@ -1,4 +1,3 @@
-import { projectBuilder } from "./project-builder.js";
 import { pubsub } from "./pubsub.js";
 import { taskBuilder } from "./task-builder.js";
 import "./local-storage";
@@ -22,7 +21,7 @@ export const projectsController = (function () {
 
   function buildDefaultList() {
     let list = [];
-    const defaultProject = projectBuilder("My Project", [], true);
+    const defaultProject = { title: "My Project", tasks: [], isActive: true };
     list.push(defaultProject);
     return list;
   }
@@ -99,7 +98,7 @@ export const projectsController = (function () {
 
     function appendProject(e) {
       const title = e.title;
-      projects.push(projectBuilder(title, [], false));
+      projects.push({ title, tasks: [], isActive: false });
     }
   }
 
