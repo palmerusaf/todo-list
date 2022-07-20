@@ -6,7 +6,7 @@ export const LocalStorage = (() => {
 
   function _getSavedData() {
     pubsub.publish(
-      "loadProjectList",
+      "loadprojects",
       JSON.parse(window.localStorage.getItem("savedData"))
     );
   }

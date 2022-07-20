@@ -1,12 +1,8 @@
 import { taskBuilder } from "../task-builder.js";
 
-let threeDifferentTaskLists = [
-  buildTaskList("a"),
-  buildTaskList("b"),
-  buildTaskList("c"),
-];
-function buildTaskList(modifier) {
-  let taskList = [];
+let threeDifferenttaskss = [buildtasks("a"), buildtasks("b"), buildtasks("c")];
+function buildtasks(modifier) {
+  let tasks = [];
   for (let i = 0; i < 10; i++) {
     const newTask = taskBuilder(
       `task${i} for project ${modifier}`,
@@ -15,8 +11,8 @@ function buildTaskList(modifier) {
       `${i}`,
       i % 2 ? true : false
     );
-    taskList.push(newTask);
+    tasks.push(newTask);
   }
-  return taskList;
+  return tasks;
 }
-export { threeDifferentTaskLists as taskListPrototype };
+export { threeDifferenttaskss as tasksPrototype };

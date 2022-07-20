@@ -1,15 +1,15 @@
 import { projectBuilder } from "../project-builder";
-import { taskListPrototype } from "./task-builder-tests";
+import { tasksPrototype } from "./task-builder-tests";
 
-let projectListPrototype = [];
+let projectsPrototype = [];
 
 for (let i = 0; i < 3; i++) {
   const newProject = projectBuilder(
     `project${i}`,
-    taskListPrototype[i],
+    tasksPrototype[i],
     i % 2 ? true : false
   );
-  projectListPrototype.push(newProject);
+  projectsPrototype.push(newProject);
 }
 
-export { projectListPrototype };
+export { projectsPrototype };

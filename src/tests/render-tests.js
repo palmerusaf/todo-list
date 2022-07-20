@@ -1,6 +1,6 @@
 import { Render } from "../render.js";
 import "../project-list-controller";
-import { projectListPrototype } from "./project-builder-test";
+import { projectsPrototype } from "./project-builder-test";
 import { pubsub } from "../pubsub";
 
 // Common buttons render test
@@ -10,5 +10,5 @@ import { pubsub } from "../pubsub";
 // document.body.appendChild(IconButton({ type: "check" }));
 
 // Test Exports
-pubsub.publish("loadProjectList", projectListPrototype);
+pubsub.publish("loadprojects", projectsPrototype);
 document.body.appendChild(Render.makeToDoList());

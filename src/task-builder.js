@@ -3,7 +3,7 @@ export const taskBuilder = function (
   description,
   dueDate,
   priority,
-  taskCompleteStatus
+  isDone
 ) {
-  return { title, description, dueDate, priority, taskCompleteStatus };
+  return { title, description, dueDate, priority, isDone };
 };

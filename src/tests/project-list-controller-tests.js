@@ -1,6 +1,6 @@
 import "../project-list-controller";
 import { pubsub } from "../pubsub";
-import { projectListPrototype } from "./project-builder-test";
+import { projectsPrototype } from "./project-builder-test";
 
 pubsub.subscribe("updateListOfProjects", logData);
 
@@ -38,17 +38,17 @@ function buildForm(projectIndex, taskIndex) {
 }
 //initListTest with pubsub
 // Test with empty local storage
-// pubsub.publish("loadProjectList",JSON.parse(localStorage.getItem("projectList"))||"");
+// pubsub.publish("loadprojects",JSON.parse(localStorage.getItem("projects"))||"");
 // Test with local storage
-// pubsub.publish("loadProjectList",projectListPrototype);
+// pubsub.publish("loadprojects",projectsPrototype);
 
 // removeProject Tests
-// pubsub.publish("loadProjectList",projectListPrototype);
+// pubsub.publish("loadprojects",projectsPrototype);
 // pubsub.publish("projectDeleteClick",2)
 // pubsub.publish("projectDeleteClick",2)
 
 // removeTasks Tests
-pubsub.publish("loadProjectList", projectListPrototype);
+pubsub.publish("loadprojects", projectsPrototype);
 // window.deleteButtonClick = function (projectIndex,taskIndex) {
 //   const buttonClick = {projectIndex,taskIndex};
 //   pubsub.publish("taskDeleteClick", buttonClick);
@@ -69,7 +69,7 @@ pubsub.publish("loadProjectList", projectListPrototype);
 // toggleTaskComplete Test
 // function toggleTest(pI,tI){
 // pubsub.subscribe("updateListOfProjects", (e) => {
-// console.log(e[pI].taskList[tI]);
+// console.log(e[pI].tasks[tI]);
 // });
 // pubsub.publish("toggleTaskCompleteClick", { projectIndex: pI, taskIndex: tI });
 //  }

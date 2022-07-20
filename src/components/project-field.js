@@ -1,6 +1,6 @@
-import { pubsub } from "./pubsub.js";
+import { pubsub } from "../pubsub.js";
 import bem from "easy-bem";
-import IconButton from "./components/icon-button";
+import IconButton from "./icon-button";
 
 export const RenderProjectField = (() => {
   // for bem class names

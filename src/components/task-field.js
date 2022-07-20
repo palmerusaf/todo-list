@@ -1,28 +1,24 @@
-import { pubsub } from "./pubsub.js";
+import { pubsub } from "../pubsub.js";
 import bem from "easy-bem";
 import { formatDistanceToNow } from "date-fns";
 import { kebabCase, capitalize, camelCase } from "lodash";
-import IconButton from "./components/icon-button";
+import IconButton from "./icon-button";
 
-export const RenderTaskField = (() => {
+export default function TaskField() {
   // for bem class names
   const tf = bem("task-field");
   const tForm = bem("task-form");
 
   // Initialize PubSubs
-  pubsub.subscribe("updateListOfProjects", renderTaskFieldContent);
+  pubsub.subscribe("updateListOfProjects", TaskFieldItems);
 
-  // Initialize taskField
-  const taskField = document.createElement("div");
-  taskField.classList.add(tf());
-
-  function renderTaskFieldContent(projects) {
+  function TaskFieldItems(projects) {
     taskField.textContent = "";
 
     const project = _getActiveProject(projects);
     if (!project) return;
 
-    const projectIndex = _getActiveProjectIndex(projects);
+    const projectIndex = _getActiveprojectIndex(projects);
     taskField.dataset.projectIndex = projectIndex;
     taskField.appendChild(_makeProjectTitle(project));
     taskField.appendChild(_maketasks(project));
@@ -49,7 +45,7 @@ export const RenderTaskField = (() => {
         item.classList = tf("task-item", {
           ["mark-done"]: task.isDone,
         });
-        item.dataset.taskIndex = index;
+        item.dataset.taskId = index;
         item.dataset.dueDate = task.dueDate;
         item.appendChild(_makeTaskMainView(task));
         item.appendChild(_makeTaskExpandedView(task));
@@ -132,11 +128,11 @@ export const RenderTaskField = (() => {
                 dueDate.valueAsDat;
                 description.value = taskData.description;
                 priority.value = taskData.priority;
-                form.dataset.taskIndex = taskData.taskIndex;
+                form.dataset.taskId = taskData.taskId;
                 return form;
 
                 function _scrapDataFromTaskNode(taskNode) {
-                  const taskIndex = taskNode.dataset.taskIndex;
+                  const taskId = taskNode.dataset.taskId;
                   const dueDate = taskNode.dataset.dueDate;
                   const title = taskNode.querySelector(
                     `.${tf("title")} span`
@@ -148,7 +144,7 @@ export const RenderTaskField = (() => {
                     `.${tf("priority")} span`
                   ).textContent;
                   return {
-                    taskIndex,
+                    taskId,
                     dueDate,
                     title,
                     description,
@@ -180,12 +176,12 @@ export const RenderTaskField = (() => {
           }
 
           function _getIndicesOfe(e) {
-            const taskIndex =
-              e.target.parentNode.parentNode.parentNode.dataset.taskIndex;
+            const taskId =
+              e.target.parentNode.parentNode.parentNode.dataset.taskId;
             const projectIndex =
               e.target.parentNode.parentNode.parentNode.parentNode.parentNode
                 .dataset.projectIndex;
-            return { taskIndex, projectIndex };
+            return { taskId, projectIndex };
           }
         }
       }
@@ -344,14 +340,14 @@ export const RenderTaskField = (() => {
         ).value;
         const priority = form.querySelector(".task-field__selector").value;
         const projectIndex = taskField.dataset.projectIndex;
-        const taskIndex = form.dataset.taskIndex;
+        const taskId = form.dataset.taskId;
         const task = {
           title,
           description,
           dueDate,
           priority,
           projectIndex,
-          taskIndex,
+          taskId,
         };
         pubsub.publish("taskAddClick", task);
       }
@@ -367,10 +363,17 @@ export const RenderTaskField = (() => {
       return projects.filter((project) => project.isActive)[0];
     }
 
-    function _getActiveProjectIndex(projects) {
+    function _getActiveprojectIndex(projects) {
       return projects.findIndex((project) => project.isActive);
     }
   }
 
-  return { taskField };
-})();
+  const RenderTaskField = (() => {
+    // Initialize taskField
+    const taskField = document.createElement("div");
+    taskField.classList.add(tf());
+    return { taskField };
+  })();
+
+  return RenderTaskField.taskField;
+}

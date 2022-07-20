@@ -3,9 +3,9 @@ import { pubsub } from "./pubsub.js";
 import { taskBuilder } from "./task-builder.js";
 import "./local-storage";
 
-export const projectListController = (function () {
-  let projectList = [];
-  pubsub.subscribe("loadProjectList", initProjectList);
+export const projectsController = (function () {
+  let projects = [];
+  pubsub.subscribe("loadprojects", initprojects);
   pubsub.subscribe("projectDeleteClick", deleteProject);
   pubsub.subscribe("taskDeleteClick", deleteTask);
   pubsub.subscribe("taskAddClick", addTask);
@@ -14,10 +14,10 @@ export const projectListController = (function () {
   pubsub.subscribe("toggleTaskCompleteClick", toggleTaskComplete);
   pubsub.publish("requestDataFromLocalStorage");
 
-  function initProjectList(storedList) {
-    projectList = storedList || buildDefaultList();
-    if (projectList.length === 0) projectList = buildDefaultList();
-    pubsub.publish("updateListOfProjects", projectList);
+  function initprojects(storedList) {
+    projects = storedList || buildDefaultList();
+    if (projects.length === 0) projects = buildDefaultList();
+    pubsub.publish("updateListOfProjects", projects);
   }
 
   function buildDefaultList() {
@@ -27,113 +27,107 @@ export const projectListController = (function () {
     return list;
   }
 
-  function deleteProject(clickEvent) {
-    const index = clickEvent.projectIndex;
-    projectList[index]
-      ? projectList.splice(index, 1)
+  function deleteProject(e) {
+    const index = e.projectIndex;
+    projects[index]
+      ? projects.splice(index, 1)
       : console.warn(`Project index ${index} not found to delete.`);
-    pubsub.publish("updateListOfProjects", projectList);
+    pubsub.publish("updateListOfProjects", projects);
   }
 
-  function deleteTask(clickEvent) {
-    const pI = clickEvent.projectIndex;
-    const tI = clickEvent.taskIndex;
-    projectList[pI].taskList[tI]
-      ? projectList[pI].taskList.splice(tI, 1)
+  function deleteTask(e) {
+    const pI = e.projectIndex;
+    const tI = e.taskIndex;
+    projects[pI].tasks[tI]
+      ? projects[pI].tasks.splice(tI, 1)
       : console.warn(
           `Project index ${pI},task index ${tI} not found to delete.`
         );
-    pubsub.publish("updateListOfProjects", projectList);
+    pubsub.publish("updateListOfProjects", projects);
   }
 
-  function addTask(clickEvent) {
-    if (taskAlreadyExists(clickEvent)) replaceOldTaskWithNewTask(clickEvent);
-    else appendListWithNewTask(clickEvent);
-    pubsub.publish("updateListOfProjects", projectList);
+  function addTask(e) {
+    if (taskAlreadyExists(e)) replaceOldTaskWithNewTask(e);
+    else appendListWithNewTask(e);
+    pubsub.publish("updateListOfProjects", projects);
 
-    function taskAlreadyExists(clickEvent) {
-      const pI = clickEvent.projectIndex;
-      const taskIndex = clickEvent.taskIndex;
-      const taskListLength = projectList[pI].taskList.length;
-      if (taskIndex !== undefined) return taskIndex < taskListLength;
+    function taskAlreadyExists(e) {
+      const pI = e.projectIndex;
+      const taskIndex = e.taskIndex;
+      const tasksLength = projects[pI].tasks.length;
+      if (taskIndex !== undefined) return taskIndex < tasksLength;
       return taskIndex;
     }
 
-    function appendListWithNewTask(clickEvent) {
-      const pI = clickEvent.projectIndex;
-      projectList[pI].taskList.push(createTaskFromClickEvent(clickEvent));
+    function appendListWithNewTask(e) {
+      const pI = e.projectIndex;
+      projects[pI].tasks.push(createTask(e));
     }
 
-    function replaceOldTaskWithNewTask(clickEvent) {
-      const pI = clickEvent.projectIndex;
-      const tI = clickEvent.taskIndex;
-      projectList[pI].taskList[tI] = createTaskFromClickEvent(clickEvent);
+    function replaceOldTaskWithNewTask(e) {
+      const pI = e.projectIndex;
+      const tI = e.taskIndex;
+      projects[pI].tasks[tI] = createTask(e);
     }
 
-    function createTaskFromClickEvent(clickEvent) {
-      const title = clickEvent.title;
-      const description = clickEvent.description;
-      const dueDate = clickEvent.dueDate;
-      const priority = clickEvent.priority;
-      const taskCompleteStatus = false;
-      return taskBuilder(
-        title,
-        description,
-        dueDate,
-        priority,
-        taskCompleteStatus
-      );
+    function createTask(e) {
+      const title = e.title;
+      const description = e.description;
+      const dueDate = e.dueDate;
+      const priority = e.priority;
+      const isDone = false;
+      return taskBuilder(title, description, dueDate, priority, isDone);
     }
   }
 
-  function addProject(clickEvent) {
-    if (projectAlreadyExists(clickEvent)) changeProjectTitle(clickEvent);
-    else appendProject(clickEvent);
-    pubsub.publish("updateListOfProjects", projectList);
+  function addProject(e) {
+    if (projectAlreadyExists(e)) changeProjectTitle(e);
+    else appendProject(e);
+    pubsub.publish("updateListOfProjects", projects);
 
-    function projectAlreadyExists(clickEvent) {
-      const pI = clickEvent.projectIndex;
-      if (pI !== undefined) return pI < projectList.length;
+    function projectAlreadyExists(e) {
+      const pI = e.projectIndex;
+      if (pI !== undefined) return pI < projects.length;
       return pI;
     }
 
-    function changeProjectTitle(clickEvent) {
-      const pI = clickEvent.projectIndex;
-      const newTitle = clickEvent.title;
-      projectList[pI].title = newTitle;
+    function changeProjectTitle(e) {
+      const pI = e.projectIndex;
+      const newTitle = e.title;
+      projects[pI].title = newTitle;
     }
 
-    function appendProject(clickEvent) {
-      const title = clickEvent.title;
-      projectList.push(projectBuilder(title, [], false));
+    function appendProject(e) {
+      const title = e.title;
+      projects.push(projectBuilder(title, [], false));
     }
   }
 
-  function setActiveProject(clickEvent) {
-    const pI = clickEvent.projectIndex;
-    if (projectList[pI] === undefined) {
+  function setActiveProject(e) {
+    const pI = e.projectIndex;
+    if (projects[pI] === undefined) {
       console.error("Project Index undefined.");
       return;
     }
     setAllProjectsToInActive();
     setProjectIndexToActive(pI);
-    pubsub.publish("updateListOfProjects", projectList);
+    pubsub.publish("updateListOfProjects", projects);
 
     function setAllProjectsToInActive() {
-      projectList.forEach((project) => (project.activeStatus = false));
+      projects.forEach((project) => (project.isActive = false));
     }
 
     function setProjectIndexToActive(index) {
-      projectList[index].activeStatus = true;
+      projects[index].isActive = true;
     }
   }
 
-  function toggleTaskComplete(clickEvent) {
-    const pI = clickEvent.projectIndex;
-    const tI = clickEvent.taskIndex;
-    projectList[pI].taskList[tI].taskCompleteStatus
-      ? (projectList[pI].taskList[tI].taskCompleteStatus = false)
-      : (projectList[pI].taskList[tI].taskCompleteStatus = true);
-    pubsub.publish("updateListOfProjects", projectList);
+  function toggleTaskComplete(e) {
+    const pI = e.projectIndex;
+    const tI = e.taskIndex;
+    projects[pI].tasks[tI].isDone
+      ? (projects[pI].tasks[tI].isDone = false)
+      : (projects[pI].tasks[tI].isDone = true);
+    pubsub.publish("updateListOfProjects", projects);
   }
 })();

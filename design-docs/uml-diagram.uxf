@@ -4,7 +4,7 @@ _Responsibility_
 -- Store/Retrieve Data from local machine
 --
 _Attributes_
-- localProjectList: Project[...]
+- localprojects: Project[...]
 --
 _Functions_
 getList(): 
@@ -16,8 +16,8 @@ _Responsibility_
 --
 _Attributes_
 + title: string
-+ taskList: Task[...]
-+ activeStatus: bool
++ tasks: Task[...]
++ isActive: bool
 </panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>750</x><y>539</y><w>160</w><h>170</h></coordinates><panel_attributes>&lt;&lt;Factory Function&gt;&gt;
 Task
 --
@@ -29,7 +29,7 @@ _Attributes_
 + description: string
 + dueDate: new Date
 + priority: int
-+ taskCompleteStatus: bool
++ isDone: bool
 
 </panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>170</x><y>179</y><w>270</w><h>220</h></coordinates><panel_attributes>Render
 --
@@ -37,8 +37,8 @@ _Responsibility_
 -- Store shared funcs and export dependencies
 --
 _Attributes_
-+ projectListField
-+ taskListField
++ projectsField
++ tasksField
 --
 _Functions_
 + makeAddItemButton
@@ -64,7 +64,7 @@ _Responsibility_
 -- Store Projects
 --
 _Attributes_
-+ projectList: Project[...]
++ projects: Project[...]
 --
 _Functions_
 + deleteProject(Event): Project[...]
@@ -104,10 +104,10 @@ _Responsibility_
 -- Handle project list rendering
 --
 _Attributes_
-+ projectListField
++ projectsField
 --
 _Functions_
-+ renderProjectFieldContent(projectList)
++ renderProjectFieldContent(projects)
 - makeProjectTitle
 - makeProjectDeleteButton
 - makeProjectEditButton
@@ -120,10 +120,10 @@ _Responsibility_
 -- Handle task list rendering
 --
 _Attributes_
-+ taskListField
++ tasksField
 --
 _Functions_
-+ renderTaskFieldContent(projectList)
++ renderTaskFieldContent(projects)
 - makeProjectTitle
 - makeTask
 - makeTaskDeleteButton
