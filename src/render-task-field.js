@@ -3,7 +3,7 @@ import bem from "easy-bem";
 import { formatDistanceToNow } from "date-fns";
 import { kebabCase, capitalize, camelCase } from "lodash";
 import IconButton from "./components/icon-button";
-import TaskForm from './components/task-form.js';
+import TaskForm from "./components/task-form.js";
 import dom from "jsx-render";
 
 export const RenderTaskField = (() => {
